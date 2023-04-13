@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="main.java.GUI.BanHangView">
+  <grid id="27dc6" binding="JPBanHang" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="754" height="478"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="2ad6b" class="javax.swing.JLabel" binding="JThanhToan">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Thanh Toán"/>
+        </properties>
+      </component>
+      <component id="baaf6" class="javax.swing.JLabel" binding="JLNhan">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Nhận"/>
+        </properties>
+      </component>
+      <component id="fe6ee" class="javax.swing.JLabel" binding="JThue">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Thuế"/>
+        </properties>
+      </component>
+      <component id="8fe99" class="javax.swing.JLabel" binding="JLTongTien">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Tổng Tiền"/>
+        </properties>
+      </component>
+      <component id="93ac6" class="javax.swing.JLabel" binding="JLMaHoaDon">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Mã Hóa Đơn"/>
+        </properties>
+      </component>
+      <component id="b24db" class="javax.swing.JTextField" binding="JTMaHoaDon">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="15"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="9cc59" class="javax.swing.JTextField" binding="JTTongTien">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="c3946" class="javax.swing.JTextField" binding="JTThue">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="2bcf5" class="javax.swing.JTextField" binding="JTThanhToan">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <grid id="860e4" binding="JPGioHang" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="4" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="877b1" binding="JSGioHang">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="68ca4" class="javax.swing.JTable" binding="TbGioHang">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <grid id="b47e0" binding="JPSanPham" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="6" column="0" row-span="4" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="34bf8" binding="JSSanPham">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="ba6ac" class="javax.swing.JTable" binding="TbSanPham">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </grid>
+      <component id="6ac39" class="javax.swing.JLabel" binding="JLTienThoi">
+        <constraints>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Tiền Thối"/>
+        </properties>
+      </component>
+      <component id="9447e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="f4b79" class="javax.swing.JLabel" binding="JLTienTe1">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="VNĐ"/>
+        </properties>
+      </component>
+      <component id="13b84" class="javax.swing.JLabel" binding="JLTienTe2">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="VNĐ"/>
+        </properties>
+      </component>
+      <component id="1b99c" class="javax.swing.JLabel" binding="JLTienTe3">
+        <constraints>
+          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="VNĐ"/>
+        </properties>
+      </component>
+      <component id="cc3b" class="javax.swing.JLabel" binding="JLNguoiLap">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Segoe UI Black" size="12" style="1"/>
+          <text value="Người Lâp"/>
+        </properties>
+      </component>
+      <component id="822bf" class="javax.swing.JTextField" binding="JTNguoiLap">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="94b91" class="javax.swing.JLabel" binding="JLGioHang">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Giỏ Hàng"/>
+        </properties>
+      </component>
+      <grid id="a295b" binding="JPChucNang" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <hspacer id="a0d51">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="eee69" class="javax.swing.JLabel" binding="JLTimKiem">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <labelFor value="9357f"/>
+              <text value="Tìm Kiếm"/>
+            </properties>
+          </component>
+          <component id="9357f" class="javax.swing.JTextField" binding="JTTimKiem">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="6f1c1" class="javax.swing.JButton" binding="JBThem">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-4917509"/>
+              <text value="Thêm"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="8d576" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="2" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Hóa Đơn"/>
+        </properties>
+      </component>
+      <component id="17a37" class="javax.swing.JButton" binding="tạoHóaĐơnButton" default-binding="true">
+        <constraints>
+          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4917509"/>
+          <text value="Tạo Hóa Đơn"/>
+        </properties>
+      </component>
+      <component id="fa52c" class="javax.swing.JTextField" binding="JTNhan">
+        <constraints>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="b91ef" class="javax.swing.JTextField" binding="JTTienThoi">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="158" height="38"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>
