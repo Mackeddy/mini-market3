@@ -59,15 +59,15 @@ public class MainView extends JFrame{
             }
         });
 
-//        JBNhanVien.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                JPright.removeAll();
-//                JPright.add(new SP_UI());
-//                JPright.revalidate(); // Cập nhật lại giao diện
-//                JPright.repaint();
-//            }
-//        });
+        JBKhachHang.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new KhachHang());
+                JPright.revalidate(); // Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
 
     }
 
