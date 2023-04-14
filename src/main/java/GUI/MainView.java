@@ -69,6 +69,15 @@ public class MainView extends JFrame{
             }
         });
 
+        JBHoaDon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new HoaDon());
+                JPright.revalidate(); //Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
     }
 
     public static void main(String[] args) {
