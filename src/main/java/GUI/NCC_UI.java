@@ -1,8 +1,9 @@
 package main.java.GUI;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class NCC_UI extends JFrame{
+public class NCC_UI extends JPanel{
     private JPanel NCC_Panel;
     private JLabel l_ten;
     private JTextField t_ten;
@@ -16,16 +17,16 @@ public class NCC_UI extends JFrame{
     private JButton b_tim;
     private JTextField t_ma;
     private JButton b_them;
-    private JScrollBar scrollBar1;
-    private JTable table1;
+    private JScrollBar JSNCC;
+    private JTable JTNCC;
     private JTextField t_email;
     private JLabel l_email;
+    private JPanel NNC_Panel;
+    private JPanel JPNcc_table;
+
     NCC_UI(){
-        setContentPane(NCC_Panel);
-        setTitle("Sản phẩm");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800,600);
-        setLocationRelativeTo(null);
-        setVisible(true);
+        NNC_Panel.setPreferredSize(new Dimension(1128, 510));
+        add(NNC_Panel);
+        NNC_Panel.setVisible(true); // hiển thị JPanel
     }
 }

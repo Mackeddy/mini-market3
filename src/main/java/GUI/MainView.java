@@ -16,7 +16,7 @@ public class MainView extends JFrame{
     private JButton JBTroVe;
     private JPanel JPright;
     private JButton JBSanPham;
-    private JButton tàiKhoảnButton;
+    private JButton JBTaiKhoan;
 
     public MainView() {
         setTitle("Trang chủ quản lý bán hàng");
@@ -53,7 +53,7 @@ public class MainView extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JPright.removeAll();
-                JPright.add(new NhanVienView());
+                JPright.add(new SP_UI());
                 JPright.revalidate(); // Cập nhật lại giao diện
                 JPright.repaint();
             }
@@ -74,6 +74,36 @@ public class MainView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 JPright.removeAll();
                 JPright.add(new HoaDon());
+                JPright.revalidate(); //Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
+
+        JBTaiKhoan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new TaiKhoanView());
+                JPright.revalidate(); //Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
+
+        JBNhanVien.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new NhanVienView());
+                JPright.revalidate(); //Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
+
+        JBNhaCungCap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new NCC_UI());
                 JPright.revalidate(); //Cập nhật lại giao diện
                 JPright.repaint();
             }
