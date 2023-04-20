@@ -3,6 +3,8 @@ package main.java.GUI;
 import main.java.BLL.AdminBLL;
 import main.java.DTO.AdminDTO;
 import main.java.DAL.AdminDAL;
+import main.java.DTO.NhanVienDTO;
+
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -58,6 +60,50 @@ public class TaiKhoanView extends  JPanel{
                 }
             }
         });
+
+        JBXoa.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    //Kiểm tra thông tin nhập vào có đúng không
+                    int selectRow = TBTaiKhoan.getSelectedRow();
+                    String MaNV = TBTaiKhoan.getValueAt(selectRow, 0).toString(); //Lấy mã nhân viên của hàng được chọn
+                    AdminDTO tk = new AdminDTO();
+                    tk.setMaTK(MaNV);
+                    JOptionPane.showMessageDialog(JPTaiKhoan, tkBLL.deleteTaiKhoan(tk));
+                    loadTaiKhoan();
+
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(JPTaiKhoan, "Thông tin không hợp lệ");
+                }
+            }
+        });
+
+        JBCapNhat.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if ( JTMaTK.getText().trim().equals("")    ||
+                         JTTenTK.getText().trim().equals("")   ||
+                         JTMatKhau.getText().trim().equals(""))
+                        JOptionPane.showMessageDialog(JPTaiKhoan,"Vui lòng nhập đủ thông tin");
+                    else {
+                        //Lấy chỉ chỉ số của hàng cần sửa
+                        int selectRow = TBTaiKhoan.getSelectedRow();
+                        String MaTK_old = TBTaiKhoan.getValueAt(selectRow, 0).toString(); //Lấy mã nhân viên của hàng được chọn
+                        AdminDTO tk = new AdminDTO();
+                        tk.setMaTK(JTMaTK.getText());
+                        tk.setTenTK(JTTenTK.getText());
+                        tk.setMatKhau(JTMatKhau.getText());
+                        JOptionPane.showMessageDialog(JPTaiKhoan, tkBLL.updateTaiKhoan(tk, MaTK_old));
+                        loadTaiKhoan();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(JPTaiKhoan, "Thông tin không hợp lệ");
+                }
+            }
+        });
+
         JPTaiKhoan.setVisible(true); // hiển thị JPanel
     }
 

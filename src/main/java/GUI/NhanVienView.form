@@ -147,7 +147,7 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Nhập thông tin cần tìm"/>
+              <text value="Tim theo mã nhân viên"/>
             </properties>
           </component>
           <component id="15e48" class="javax.swing.JTextField" binding="JTTimkiem">

@@ -139,11 +139,38 @@ public class NhanVienDAL {
                     result = true;
             } catch (SQLException ex){
                 ex.printStackTrace();
-                System.out.println("Lỗi ở hàm deleteNhanVien của class NhanVienDAL");
+                System.out.println("Lỗi ở hàm updateNhanVien của class NhanVienDAL");
             } finally {
                 closeConnection();
             }
         }
         return result;
     }
+
+//    public Vector<NhanVienDTO> searchMaNV(String MaNV){
+//        Vector<NhanVienDTO> nv_arr = new Vector<NhanVienDTO>();
+//        if (openConnection()) {
+//            try {
+//                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
+//                String sql = "SELECT * FROM NhanVien WHERE MaNV = '" + MaNV + "'";
+//                Statement stmt = con.createStatement();
+//                ResultSet rs = stmt.executeQuery(sql);
+//                while (rs.next()){
+//                    NhanVienDTO nv = new NhanVienDTO();
+//                    nv.setMaNV(rs.getString("MaNV"));
+//                    nv.setTenNV(rs.getString("TenNV"));
+//                    nv.setSdtNV(rs.getString("SdtNV"));
+//                    nv.setEmailNV(rs.getString("EmailNV"));
+//                    nv.setChucvu(rs.getString("Chucvu"));
+//                    nv_arr.add(nv);
+//                }
+//            } catch (SQLException ex){
+//                System.out.println("Lỗi ở hàm deleteNhanVien của class NhanVienDAL");
+//            } finally {
+//                closeConnection();
+//            }
+//        }
+//        return nv_arr;
+//    }
+
 }

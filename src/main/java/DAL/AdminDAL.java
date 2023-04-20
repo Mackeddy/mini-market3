@@ -1,5 +1,7 @@
 package main.java.DAL;
 import main.java.DTO.AdminDTO;
+import main.java.DTO.NhanVienDTO;
+
 import java.sql.*;
 import java.util.Vector;
 
@@ -87,6 +89,55 @@ public class AdminDAL {
                 result = rs.next();
             } catch (SQLException ex) {
                 System.out.println(ex);
+            } finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
+    public boolean deleteTaiKhoan(String MaTK){
+        boolean result = false;
+        if (openConnection()) {
+            try {
+                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
+                String sql = "DELETE FROM TaiKhoan WHERE MaTK = '" + MaTK + "'";
+                Statement stmt = con.createStatement();
+                int rowCount = stmt.executeUpdate(sql);
+                //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
+                if (rowCount > 0)
+                    result = true;
+            } catch (SQLException ex){
+                System.out.println("Lỗi ở hàm deleteTaiKhoan của class NhanVienDAL");
+                ex.printStackTrace();
+            } finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
+    public boolean updateTaiKhoan(AdminDTO tk, String MaTK_old){
+        boolean result = false;
+        if (openConnection()) {
+            try {
+                System.out.println(MaTK_old);
+                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
+                String sql = "UPDATE TaiKhoan SET MaTK = ?, MaNV = ?, MatKhau = ? " +
+                        "WHERE MaTK = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, tk.getMaTK());
+                stmt.setString(2, tk.getTenTK());
+                stmt.setString(3, tk.getMatKhau());
+                stmt.setString(4, MaTK_old);
+                int rowCount = stmt.executeUpdate();
+                System.out.print(rowCount);
+                //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
+                if (rowCount > 0)
+                    result = true;
+            } catch (SQLException ex){
+                ex.printStackTrace();
+                System.out.println("Lỗi ở hàm updateTaiKhoan của class AdminDAL");
             } finally {
                 closeConnection();
             }
