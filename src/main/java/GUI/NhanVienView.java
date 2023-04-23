@@ -42,7 +42,7 @@ public class NhanVienView extends JPanel{
     }
 
     public void initComponents(){
-        JPNhanVien.setPreferredSize(new Dimension(1120, 500));
+        JPNhanVien.setPreferredSize(new Dimension(1130, 545));
         add(JPNhanVien);
         JPNhanVien.setVisible(true); // hiển thị JPanel
         JBThem.addActionListener(new ActionListener() {
@@ -113,6 +113,44 @@ public class NhanVienView extends JPanel{
                         nv.setChucvu(JTChucvu.getText());
                         JOptionPane.showMessageDialog(JPNhanVien, nvBLL.updateNhanVien(nv, MaNV));
                         loadNhanVien();
+                    }
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(JPNhanVien, "Thông tin không hợp lệ");
+                }
+            }
+        });
+
+        JBTimKiem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if ( JTTimkiem.getText().trim().equals("") )
+                        JOptionPane.showMessageDialog(JPNhanVien,"Vui lòng nhập thông tin cần tìm");
+                    else {
+                        // Tạo model và thêm các cột vào model
+                        DefaultTableModel model = new DefaultTableModel();
+                        model.addColumn("Mã Nhân Viên");
+                        model.addColumn("Họ Tên Nhân Viên");
+                        model.addColumn("SĐT");
+                        model.addColumn("Email");
+                        model.addColumn("Chức vụ");
+
+                        // Gắn model vào bảng
+                        JTNhanVien.setModel(model);
+                        String MaNV_old = JTTimkiem.getText();
+                        Vector<NhanVienDTO> nv_arr = new Vector<NhanVienDTO>();
+                        nvBLL.searchmaNV(nv_arr, MaNV_old);
+                        for (int i = 0; i < nv_arr.size(); i++){
+                            NhanVienDTO nv = nv_arr.get(i);
+                            String MaNV = nv.getMaNV();
+                            String TenNV = nv.getTenNV();
+                            String SdtNV = nv.getSdtNV();
+                            String EmailNV = nv.getEmailNV();
+                            String Chucvu = nv.getChucvu();
+                            Object[] row = {MaNV, TenNV, SdtNV, EmailNV, Chucvu};
+                            model.addRow(row);
+                        }
+                        JOptionPane.showMessageDialog(JPNhanVien, nvBLL.searchmaNV(nv_arr, MaNV_old));
                     }
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(JPNhanVien, "Thông tin không hợp lệ");

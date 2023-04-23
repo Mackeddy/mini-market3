@@ -22,7 +22,7 @@ public class MainView extends JFrame{
         setTitle("Trang chủ quản lý bán hàng");
         setContentPane(panel1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1300, 650);
+        setSize(1300, 730);
         setVisible(true);
 
         //thêm sự kiện vào nút trở về

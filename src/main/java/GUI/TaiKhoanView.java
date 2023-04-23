@@ -23,12 +23,12 @@ public class TaiKhoanView extends  JPanel{
     private JTextField JTMatKhau;
     private JPanel JPTaiKhoan;
     private JPanel JPTable;
-    private JScrollPane JSTable;
     private JLabel JLNhap;
     private JLabel JLMaTK;
     private JLabel JLTenTK;
     private JLabel JLMatKhau;
     private JLabel JLTimkiem;
+    private JScrollPane JSTaiKhoan;
 
     AdminBLL tkBLL = new AdminBLL();
     public TaiKhoanView(){
