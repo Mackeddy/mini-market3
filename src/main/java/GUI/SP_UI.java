@@ -1,7 +1,6 @@
 package main.java.GUI;
 import main.java.BLL.SanPhamBLL;
 import main.java.DTO.SanPhamDTO;
-import main.java.DAL.SanPhamDAL;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +26,8 @@ public class SP_UI extends JPanel {
     private JLabel JL_GiaSP;
     private JLabel JL_NCC;
     private JPanel TT;
+    private JLabel JL_SoLg;
+    private JTextField JT_SoLg;
     SanPhamBLL spBLL = new SanPhamBLL();
 
     SP_UI(){
@@ -46,7 +47,8 @@ public class SP_UI extends JPanel {
                     if(JT_MaSP.getText().trim().equals("") ||
                             JT_TenSP.getText().trim().equals("") ||
                             JT_GiaSP.getText().trim().equals("") ||
-                            JT_NCC.getText().trim().equals("") )
+                            JT_NCC.getText().trim().equals("") ||
+                            JT_SoLg.getText().trim().equals(""))
                         JOptionPane.showMessageDialog(SP_Panel,"Vui lòng nhập lại thông tin");
                     else{
                         SanPhamDTO sp = new SanPhamDTO();
@@ -84,7 +86,8 @@ public class SP_UI extends JPanel {
                     if(JT_MaSP.getText().trim().equals("") ||
                             JT_TenSP.getText().trim().equals("") ||
                             JT_GiaSP.getText().trim().equals("") ||
-                            JT_NCC.getText().trim().equals("") )
+                            JT_NCC.getText().trim().equals("") ||
+                            JT_SoLg.getText().trim().equals(""))
                         JOptionPane.showMessageDialog(SP_Panel,"Vui lòng nhập lại thông tin");
                     else {
                         int selectRow = JTB_SP.getSelectedRow();
