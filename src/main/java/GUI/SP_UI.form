@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="dd97d" layout-manager="GridLayoutManager" row-count="6" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="dd97d" binding="TT" layout-manager="GridLayoutManager" row-count="5" column-count="5" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -16,7 +16,7 @@
         <properties/>
         <border type="none" title="Nhập thông tin sản phẩm"/>
         <children>
-          <component id="6e462" class="javax.swing.JLabel" binding="l_ten">
+          <component id="6e462" class="javax.swing.JLabel" binding="JL_TenSP">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -24,7 +24,7 @@
               <text value="Tên sản phẩm"/>
             </properties>
           </component>
-          <component id="ebea" class="javax.swing.JTextField" binding="t_ten">
+          <component id="ebea" class="javax.swing.JTextField" binding="JT_TenSP">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -32,31 +32,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="eda40" class="javax.swing.JLabel" binding="l_dm">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Danh mục :"/>
-            </properties>
-          </component>
-          <component id="bfbd4" class="javax.swing.JComboBox" binding="cb_dm">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="104" height="30"/>
-              </grid>
-            </constraints>
-            <properties>
-              <model>
-                <item value="Thức ăn đông lạnh"/>
-                <item value="Đồ ăn liền"/>
-                <item value="Thức uống"/>
-                <item value="Đồ gia dụng"/>
-                <item value="Dụng cụ học tập"/>
-              </model>
-            </properties>
-          </component>
-          <component id="666eb" class="javax.swing.JLabel" binding="l_ma">
+          <component id="666eb" class="javax.swing.JLabel" binding="JL_MaSP">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -64,15 +40,31 @@
               <text value="Mã sản phẩm"/>
             </properties>
           </component>
-          <component id="6f416" class="javax.swing.JLabel" binding="l_gia">
+          <component id="6f416" class="javax.swing.JLabel" binding="JL_GiaSP">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Giá"/>
             </properties>
           </component>
-          <component id="2f00b" class="javax.swing.JTextField" binding="t_gia">
+          <component id="2f00b" class="javax.swing.JTextField" binding="JT_GiaSP">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="19f58" class="javax.swing.JLabel" binding="JL_NCC">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Nhà cung cấp"/>
+            </properties>
+          </component>
+          <component id="1da" class="javax.swing.JTextField" binding="JT_NCC">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -80,47 +72,31 @@
             </constraints>
             <properties/>
           </component>
-          <component id="19f58" class="javax.swing.JLabel" binding="l_ncc">
+          <component id="f8537" class="javax.swing.JButton" binding="JB_XoaSP">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Nhà cung cấp"/>
-            </properties>
-          </component>
-          <component id="1da" class="javax.swing.JTextField" binding="t_ncc">
-            <constraints>
-              <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="f8537" class="javax.swing.JButton" binding="b_xoa">
-            <constraints>
-              <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Xóa"/>
             </properties>
           </component>
-          <component id="636ac" class="javax.swing.JButton" binding="b_sua">
+          <component id="636ac" class="javax.swing.JButton" binding="JB_SuaSP">
             <constraints>
-              <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Sửa"/>
             </properties>
           </component>
-          <component id="6b01a" class="javax.swing.JButton" binding="b_tim">
+          <component id="6b01a" class="javax.swing.JButton" binding="JB_TimSP">
             <constraints>
-              <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Tìm"/>
             </properties>
           </component>
-          <component id="7abe6" class="javax.swing.JTextField" binding="t_ma">
+          <component id="7abe6" class="javax.swing.JTextField" binding="JT_MaSP">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -128,9 +104,9 @@
             </constraints>
             <properties/>
           </component>
-          <component id="4fa79" class="javax.swing.JButton" binding="b_them">
+          <component id="4fa79" class="javax.swing.JButton" binding="JB_ThemSP">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Thêm"/>
@@ -154,7 +130,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="598ee" class="javax.swing.JTable" binding="tb_SP">
+          <component id="598ee" class="javax.swing.JTable" binding="JTB_SP">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
