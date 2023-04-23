@@ -10,8 +10,8 @@ public class SanPhamDAL {
     public  boolean openConnection(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl = "jdbc:sqlserver://localhost:1433;database=SanPham";
-            String username ="sa"; String password = "123456aA@$";
+            String dbUrl = "jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
+            String username ="sa"; String password = "12345678";
             con = DriverManager.getConnection(dbUrl,username,password);
             return true;
 
@@ -32,22 +32,24 @@ public class SanPhamDAL {
         Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
         if(openConnection()){
             try {
-                String sql = "Select * from San_Pham";
+                String sql = "SELECT * FROM SanPham";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){
                     SanPhamDTO sp = new SanPhamDTO();
-                    sp.setMaSP(rs.getString("Mã sản phẩm"));
-                    sp.setTenSP(rs.getString("Tên sản phẩm "));
-                    sp.setNCC(rs.getString("Nhà cung cấp"));
-                    sp.setGia(rs.getFloat("Giá thành"));
-                    sp.setSoLg(rs.getInt("Số lượng"));
+                    sp.setMaSP(rs.getString("MaSP"));
+                    sp.setTenSP(rs.getString("TenSP"));
+                    sp.setGia(rs.getFloat("GiaSP"));
+                    sp.setSoLg(rs.getInt("SLTon"));
+                    sp.setNCC(rs.getString("MaNCC"));
+                    arr.add(sp);
                 }
             } catch (SQLException e) {
                 System.out.println(e);
             }finally {
                 closeConnection();
-            }}
+            }
+        }
         return arr;
     }
     //MaSP,TenSP,NCC,Gia,SL
@@ -55,17 +57,18 @@ public class SanPhamDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "insert into San_Pham(?,?,?,?,?)";
+                String sql = "Insert into SanPham values(?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
-                stmt.setString(3,sp.getNCC());
-                stmt.setDouble(4,sp.getGia());
-                stmt.setInt(5,sp.getSoLg());
+                stmt.setDouble(3,sp.getGia());
+                stmt.setInt(4,sp.getSoLg());
+                stmt.setString(5,sp.getNCC());
                 if(stmt.executeUpdate()>=1)
-                result = true;
+                    result = true;
             }catch (Exception e){
-                System.out.println(e);
+                e.printStackTrace();
+                System.out.println("Lỗi ở hàm add SP");
             }finally {
                 closeConnection();
             }
@@ -76,7 +79,7 @@ public class SanPhamDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql ="SELECT * FROM San_Pham WHERE MaSP ='"+MaSP+"'";
+                String sql ="SELECT * FROM SanPham WHERE MaSP ='"+MaSP+"'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 result = rs.next();
@@ -93,7 +96,7 @@ public class SanPhamDAL {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "DELETE * FROM San_Pham WHERE MaSP ='" + MaSP + "'";
+                String sql = "DELETE * FROM SanPham WHERE MaSP ='" + MaSP + "'";
                 Statement stmt = con.createStatement();
                 int rowCount = stmt.executeUpdate(sql);
                 if (rowCount > 0)
@@ -112,7 +115,7 @@ public class SanPhamDAL {
         if(openConnection()){
             try{
                 System.out.println(MaSP_old);
-                String sql = "Update San_Pham  TenSP = ?, GiaSP = ? " + "Where MaSp = ?";
+                String sql = "UPDATE SanPham SET TenSP = ?, GiaSP = ? " + "WHERE MaSp = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getTenSP());
                 stmt.setDouble(2,sp.getGia());

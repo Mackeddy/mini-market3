@@ -19,7 +19,6 @@ public class SP_UI extends JPanel {
     private JButton JB_XoaSP;
     private JButton JB_SuaSP;
     private JButton JB_TimSP;
-    private JScrollBar scrollBar1;
     private JTable JTB_SP;
     private JLabel JL_TenSP;
     private JLabel JL_MaSP;
@@ -28,14 +27,15 @@ public class SP_UI extends JPanel {
     private JPanel TT;
     private JLabel JL_SoLg;
     private JTextField JT_SoLg;
+    private JScrollPane JSSanPham;
     SanPhamBLL spBLL = new SanPhamBLL();
 
     SP_UI(){
         SP_Panel.setPreferredSize(new Dimension(1128, 510));
         add(SP_Panel);
-        SP_Panel.setVisible(true); // hiển thị JPanel
         initComponents();
         loadSP();
+        SP_Panel.setVisible(true); // hiển thị JPanel
     }
     public void initComponents(){
 //        SP_Panel.setPreferredSize(new Dimension(1128,510));
@@ -47,14 +47,15 @@ public class SP_UI extends JPanel {
                     if(JT_MaSP.getText().trim().equals("") ||
                             JT_TenSP.getText().trim().equals("") ||
                             JT_GiaSP.getText().trim().equals("") ||
-                            JT_NCC.getText().trim().equals("") ||
-                            JT_SoLg.getText().trim().equals(""))
+                            JT_SoLg.getText().trim().equals("")  ||
+                            JT_NCC.getText().trim().equals(""))
                         JOptionPane.showMessageDialog(SP_Panel,"Vui lòng nhập lại thông tin");
                     else{
                         SanPhamDTO sp = new SanPhamDTO();
                         sp.setMaSP(JT_MaSP.getText());
                         sp.setTenSP(JT_TenSP.getText());
                         sp.setGia(Float.parseFloat(JT_GiaSP.getText()));
+                        sp.setSoLg(Integer.parseInt(JT_SoLg.getText()));
                         sp.setNCC(JT_NCC.getText());
                         JOptionPane.showMessageDialog(SP_Panel,spBLL.addSP(sp));
                         loadSP();
@@ -111,20 +112,22 @@ public class SP_UI extends JPanel {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mã sản phẩm");
         model.addColumn("Tên sản phẩm ");
-        model.addColumn("Nhà cung cấp");
         model.addColumn("Giá thành");
         model.addColumn("Số lượng");
+        model.addColumn("Nhà cung cấp");
+
         JTB_SP.setModel(model);
         Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
         arr = spBLL.getAllSanPham();
         for (int i = 0; i < arr.size(); i++){
+            System.out.println("Đang load sp lên GUI");
             SanPhamDTO sp = arr.get(i);
             String MaSP = sp.getMaSP();
             String TenSP = sp.getTenSP();
-            String NCC = sp.getNCC();
             float Gia = sp.getGia();
             int SoLg = sp.getSoLg();
-            Object[] row = {MaSP,TenSP,NCC,Gia,SoLg};
+            String NCC = sp.getNCC();
+            Object[] row = {MaSP,TenSP,Gia,SoLg,NCC};
             model.addRow(row);
         }
 

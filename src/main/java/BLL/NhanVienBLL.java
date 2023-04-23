@@ -31,8 +31,15 @@ public class NhanVienBLL {
         // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
         if (nvDAL.updateNhanVien(nv, MaNV))
             return "Cập nhật viên thành công";
-        return "Cập nhật nhân viên thất bại" +
-                "\nLưu ý bạn phải kiểm tra nhân viên này có trong bảng tài khoản không để tránh xung đột !";
+        return "Cập nhật nhân viên thất bại";
     }
 
+    public String searchmaNV(Vector<NhanVienDTO> nv_arr, String MaNV){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if(!(nvDAL.hasMaNV(MaNV)))
+            return "Nhân viên không tồn tại";
+        if (nvDAL.searchMaNV(nv_arr, MaNV))
+            return null;
+        return "Không tìm thấy nhân viên";
+    }
 }
