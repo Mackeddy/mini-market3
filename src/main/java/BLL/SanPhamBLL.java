@@ -1,7 +1,7 @@
 package main.java.BLL;
 
-import main.java.DTO.SanPhamDTO;
 import main.java.DAL.SanPhamDAL;
+import main.java.DTO.SanPhamDTO;
 
 import java.util.Vector;
 
@@ -27,12 +27,17 @@ public class SanPhamBLL {
         return "Xóa sản phẩm thất bại";
     }
 
-    public String updateSP(SanPhamDTO sp, String MaSP_old){
+    public String updateSP(SanPhamDTO sp, String MaSP){
         // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
-        if (spDAL.updateSP(sp, MaSP_old))
+        if (spDAL.updateSP(sp, MaSP))
             return "Cập nhật sản phẩm thành công";
         return "Cập nhật sản phẩm thất bại";
     }
 
+    public String searchMaSP(Vector<SanPhamDTO> sp_arr, String MaSP){
+        if(!(spDAL.hasMaSP(MaSP))) return "Mã sản phẩm không tồn tại";
+        if(spDAL.searchMaSP(sp_arr,MaSP)) return "Đã tìm thấy Sp";
+        return "Không tìm thấy sản phẩm";
+    }
 
 }
