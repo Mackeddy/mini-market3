@@ -1,25 +1,23 @@
 package main.java.DAL;
 
-import DTO.SanPhamDTO;
+import main.java.DTO.NCCDTO;
 
 import java.sql.*;
 import java.util.Vector;
-
-public class SanPhamDAL {
-    private Connection con;
-    public  boolean openConnection(){
-        try{
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl = "jdbc:sqlserver://localhost:1433;database=SanPham;encrypt=false";
-            String username ="sa"; String password = "123456aA@$";
-            con = DriverManager.getConnection(dbUrl,username,password);
-            return true;
-
-        }catch (Exception e){
-            System.out.println(e);
-            return false;
+public class NCCDAL {
+        private Connection con ;
+        public boolean openConnection(){
+            try{
+                Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                String dbUrl = "jdbc:sqlserver://localhost:1433;database=SanPham;encrypt=false";
+                String username ="sa"; String password = "123456aA@$";
+                con = DriverManager.getConnection(dbUrl,username,password);
+                return true;
+            }catch (Exception e){
+                    System.out.println(e);
+                    return false;
+            }
         }
-    }
     public void closeConnection() {
         try {
             if (con != null)
@@ -28,21 +26,21 @@ public class SanPhamDAL {
             System.out.println(ex);
         }
     }
-    public Vector<SanPhamDTO> getAllSanPham(){
-        Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
+    public Vector<NCCDTO> getAllNCC(){
+        Vector<NCCDTO> arr = new Vector<NCCDTO>();
         if(openConnection()){
             try {
-                String sql = "SELECT * FROM ministore.SP";
+                String sql = "SELECT * FROM ministore.NCC";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){
-                    SanPhamDTO sp = new SanPhamDTO();
-                    sp.setMaSP(rs.getString("MaSP"));
-                    sp.setTenSP(rs.getString("TenSP"));
-                    sp.setGia(rs.getFloat("GiaSP"));
-                    sp.setSoLg(rs.getInt("SoLg"));
-                    sp.setNCC(rs.getString("NCC"));
-                    arr.add(sp);
+                    NCCDTO ncc = new NCCDTO();
+                    ncc.setMaNCC(rs.getString("MaNCC"));
+                    ncc.setTenNCC(rs.getString("TenNCC"));
+                    ncc.setSdtNCC(rs.getString("SdtNCC"));
+                    ncc.setEmailNCC(rs.getString("EmailNCC"));
+
+                    arr.add(ncc);
                 }
             } catch (SQLException e) {
                 System.out.println(e);
@@ -51,35 +49,33 @@ public class SanPhamDAL {
             }}
         return arr;
     }
-    //MaSP,TenSP,NCC,Gia,SL
-    public boolean addSP(SanPhamDTO sp)  {
+    public boolean addNCC(NCCDTO ncc)  {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "INSERT INTO ministore.SP values(?,?,?,?,?)";
+                String sql = "INSERT INTO ministore.NCC values(?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setString(1,sp.getMaSP());
-                stmt.setString(2,sp.getTenSP());
-                stmt.setFloat(3,sp.getGia());
-                stmt.setInt(4,sp.getSoLg());
-                stmt.setString(5,sp.getNCC());
+                stmt.setString(1,ncc.getMaNCC());
+                stmt.setString(2,ncc.getTenNCC());
+                stmt.setString(3,ncc.getSdtNCC());
+                stmt.setString(4,ncc.getEmailNCC());
                 if(stmt.executeUpdate()>=1)
                     result = true;
 
-            }catch (Exception e){
+            }catch (SQLException e){
                 e.printStackTrace();
-                System.out.println("Lỗi ở hàm add");
+                System.out.println("Lỗi ở hàm add NCC");
             }finally {
                 closeConnection();
             }
         }
         return result;
     }
-    public boolean hasMaSP(String MaSP){
+    public boolean hasMaNCC(String MaNCC){
         boolean result = false;
         if(openConnection()){
             try{
-                String sql ="SELECT * FROM ministore.SP WHERE MaSP ='"+MaSP+"'";
+                String sql ="SELECT * FROM ministore.NCC WHERE MaNCC ='"+MaNCC+"'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 result = rs.next();
@@ -92,11 +88,11 @@ public class SanPhamDAL {
         }
         return result;
     }
-    public boolean deleteSP(String MaSP) {
+    public boolean deleteNCC(String MaNCC) {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "DELETE  FROM ministore.SP WHERE MaSP ='" + MaSP + "'";
+                String sql = "DELETE  FROM ministore.NCC WHERE MaNCC ='" + MaNCC + "'";
                 Statement stmt = con.createStatement();
                 int rowCount = stmt.executeUpdate(sql);
                 if (rowCount > 0)
@@ -110,19 +106,18 @@ public class SanPhamDAL {
         }
         return result;
     }
-    public boolean updateSP(SanPhamDTO sp,String MaSP){
+    public boolean updateNCC(NCCDTO ncc,String MaNCC){
         boolean result = false;
         if(openConnection()){
             try{
-                System.out.println(MaSP);
-                String sql = "UPDATE ministore.SP SET MaSP = ?, TenSP = ?, GiaSP = ?, SoLg = ?, NCC = ?"+" WHERE MaSp = ?";
+                System.out.println(MaNCC);
+                String sql = "UPDATE ministore.NCC SET MaNCC = ?, TenNCC = ?, SdtNCC = ?, EmailNCC = ?"+" WHERE MaNCC = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
-                stmt.setString(1,sp.getMaSP());
-                stmt.setString(2,sp.getTenSP());
-                stmt.setFloat(3,sp.getGia());
-                stmt.setInt(4,sp.getSoLg());
-                stmt.setString(5,sp.getNCC());
-                stmt.setString(6,MaSP);
+                stmt.setString(1,ncc.getMaNCC());
+                stmt.setString(2,ncc.getTenNCC());
+                stmt.setString(3,ncc.getSdtNCC());
+                stmt.setString(4,ncc.getEmailNCC());
+                stmt.setString(5,MaNCC);
                 int rowCount = stmt.executeUpdate();
                 System.out.println(rowCount);
                 if(rowCount > 0)
@@ -137,24 +132,23 @@ public class SanPhamDAL {
         }
         return result;
     }
-    public boolean searchMaSP(Vector<SanPhamDTO> sp_arr, String MaSP){
+    public boolean searchMaNCC(Vector<NCCDTO> ncc_arr, String MaNCC){
         boolean result = false;
         if (openConnection()) {
             try {
                 //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
-                String sql = "SELECT * FROM ministore.SP WHERE MaSP = '" + MaSP + "'";
+                String sql = "SELECT * FROM ministore.NCC WHERE MaNCC = '" + MaNCC + "'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){
-                    SanPhamDTO sp = new SanPhamDTO();
-                    sp.setMaSP(rs.getString("MaSP"));
-                    sp.setTenSP(rs.getString("TenSP"));
-                    sp.setGia(rs.getFloat("GiaSP"));
-                    sp.setSoLg(rs.getInt("SoLg"));
-                    sp.setNCC(rs.getString("NCC"));
-                    sp_arr.add(sp);
+                    NCCDTO ncc = new NCCDTO();
+                    ncc.setMaNCC(rs.getString("MaNCC"));
+                    ncc.setTenNCC(rs.getString("TenNCC"));
+                    ncc.setSdtNCC(rs.getString("SdtNCC"));
+                    ncc.setEmailNCC(rs.getString("EmailNCC"));
+                    ncc_arr.add(ncc);
                 }
-                if(sp_arr.size() > 0)
+                if(ncc_arr.size() > 0)
                     result = true;
             } catch (SQLException ex){
                 System.out.println("Lỗi ở hàm searchSP của class SanPhamDAL");
@@ -164,4 +158,5 @@ public class SanPhamDAL {
         }
         return result;
     }
+
 }

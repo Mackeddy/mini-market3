@@ -2,14 +2,12 @@ package main.java.GUI;
 import main.java.BLL.SanPhamBLL;
 import main.java.DTO.SanPhamDTO;
 
-
 import javax.swing.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
-import java.awt.Dimension;
 
-public class SP_UI extends JPanel {
+public class SP_UI extends JFrame {
 
     private JPanel SP_Panel;
     private JTextField JT_TenSP;
@@ -32,13 +30,15 @@ public class SP_UI extends JPanel {
 
     SanPhamBLL spBLL = new SanPhamBLL();
 
-    SP_UI(){
-        SP_Panel.setPreferredSize(new Dimension(1128, 510));
-        add(SP_Panel);
-         // hiển thị JPanel
+    public SP_UI(){
+        setContentPane(SP_Panel);
+        setTitle("Sản phẩm");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(1128, 510);
+//        setLocationRelativeTo(null);
+        setVisible(true);
         initComponents();
         loadSP();
-        SP_Panel.setVisible(true); // hiển thị JP
     }
     public void initComponents(){
 //        SP_Panel.setPreferredSize(new Dimension(1128,510));
@@ -139,9 +139,9 @@ public class SP_UI extends JPanel {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mã sản phẩm");
         model.addColumn("Tên sản phẩm ");
-        model.addColumn("Nhà cung cấp");
         model.addColumn("Giá thành");
         model.addColumn("Số lượng");
+        model.addColumn("Nhà cung cấp");
 
         JTB_SP.setModel(model);
         Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
@@ -151,10 +151,10 @@ public class SP_UI extends JPanel {
             SanPhamDTO sp = arr.get(i);
             String MaSP = sp.getMaSP();
             String TenSP = sp.getTenSP();
-            String NCC = sp.getNCC();
             float Gia = sp.getGia();
             int SoLg = sp.getSoLg();
-            Object[] row = {MaSP,TenSP,NCC,Gia,SoLg};
+            String NCC = sp.getNCC();
+            Object[] row = {MaSP,TenSP,Gia,SoLg,NCC};
             model.addRow(row);
         }
 
