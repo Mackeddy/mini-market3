@@ -17,6 +17,7 @@ public class MainView extends JFrame{
     private JPanel JPright;
     private JButton JBSanPham;
     private JButton JBTaiKhoan;
+    private JButton JBPhieuNhap;
 
     public MainView() {
         setTitle("Trang chủ quản lý bán hàng");
@@ -108,6 +109,17 @@ public class MainView extends JFrame{
                 JPright.repaint();
             }
         });
+
+        JBPhieuNhap.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPright.removeAll();
+                JPright.add(new PhieuNhapView());
+                JPright.revalidate(); //Cập nhật lại giao diện
+                JPright.repaint();
+            }
+        });
+
     }
 
     public static void main(String[] args) {
