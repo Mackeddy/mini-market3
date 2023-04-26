@@ -97,6 +97,25 @@ public class NhanVienDAL {
         return result;
     }
 
+    public boolean hasMaNVinTK(String MaNV){
+        boolean result = false;
+        if (openConnection()) {
+            try {
+                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
+                String sql = "SELECT * FROM TaiKhoan WHERE MaNV = '" + MaNV + "'";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
+                result = rs.next();
+            } catch (SQLException ex){
+                System.out.println("Lỗi ở hàm hasMaNVinTK của class NhanVienDAL");
+            } finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
     public boolean deleteNhanVien(String MaNV){
         boolean result = false;
         if (openConnection()) {

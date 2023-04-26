@@ -22,9 +22,11 @@ public class NhanVienBLL {
 
     public String deleteNhanVien(NhanVienDTO nv){
         // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if(nvDAL.hasMaNVinTK(nv.getMaNV()))
+            return "Bạn phải xóa tài khoản có mã nhân viên này trước để tránh xung đột!";
         if (nvDAL.deleteNhanVien(nv.getMaNV()))
             return "Xóa nhân viên thành công";
-        return "Xóa nhân viên thất bại\nLưu ý bạn phải xóa tài khoản có mã nhân viên này trước !";
+        return "Xóa nhân viên thất bại";
     }
 
     public String updateNhanVien(NhanVienDTO nv, String MaNV){

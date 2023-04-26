@@ -147,7 +147,6 @@ public class SP_UI extends JFrame {
         Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
         arr = spBLL.getAllSanPham();
         for (int i = 0; i < arr.size(); i++){
-            System.out.println("Đang load sp lên GUI");
             SanPhamDTO sp = arr.get(i);
             String MaSP = sp.getMaSP();
             String TenSP = sp.getTenSP();

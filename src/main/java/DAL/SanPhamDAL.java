@@ -1,6 +1,6 @@
 package main.java.DAL;
 
-import DTO.SanPhamDTO;
+import main.java.DTO.SanPhamDTO;
 
 import java.sql.*;
 import java.util.Vector;
@@ -10,8 +10,8 @@ public class SanPhamDAL {
     public  boolean openConnection(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl = "jdbc:sqlserver://localhost:1433;database=SanPham;encrypt=false";
-            String username ="sa"; String password = "123456aA@$";
+            String dbUrl = "jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
+            String username ="sa"; String password = "12345678";
             con = DriverManager.getConnection(dbUrl,username,password);
             return true;
 
@@ -32,7 +32,7 @@ public class SanPhamDAL {
         Vector<SanPhamDTO> arr = new Vector<SanPhamDTO>();
         if(openConnection()){
             try {
-                String sql = "SELECT * FROM ministore.SP";
+                String sql = "SELECT * FROM SanPham";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){
@@ -40,15 +40,17 @@ public class SanPhamDAL {
                     sp.setMaSP(rs.getString("MaSP"));
                     sp.setTenSP(rs.getString("TenSP"));
                     sp.setGia(rs.getFloat("GiaSP"));
-                    sp.setSoLg(rs.getInt("SoLg"));
-                    sp.setNCC(rs.getString("NCC"));
+                    sp.setSoLg(rs.getInt("SLTon"));
+                    sp.setNCC(rs.getString("MaNCC"));
                     arr.add(sp);
                 }
             } catch (SQLException e) {
+                e.printStackTrace();
                 System.out.println(e);
             }finally {
                 closeConnection();
-            }}
+            }
+        }
         return arr;
     }
     //MaSP,TenSP,NCC,Gia,SL
@@ -60,9 +62,9 @@ public class SanPhamDAL {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
-                stmt.setFloat(3,sp.getGia());
-                stmt.setInt(4,sp.getSoLg());
-                stmt.setString(5,sp.getNCC());
+                stmt.setString(3,sp.getNCC());
+                stmt.setFloat(4,sp.getGia());
+                stmt.setInt(5,sp.getSoLg());
                 if(stmt.executeUpdate()>=1)
                     result = true;
 
@@ -115,13 +117,13 @@ public class SanPhamDAL {
         if(openConnection()){
             try{
                 System.out.println(MaSP);
-                String sql = "UPDATE ministore.SP SET MaSP = ?, TenSP = ?, GiaSP = ?, SoLg = ?, NCC = ?"+" WHERE MaSp = ?";
+                String sql = "UPDATE ministore.SP SET MaSP = ?, TenSP = ?, NCC = ?, GiaSP = ?, SoLg = ?"+" WHERE MaSp = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
-                stmt.setFloat(3,sp.getGia());
-                stmt.setInt(4,sp.getSoLg());
-                stmt.setString(5,sp.getNCC());
+                stmt.setString(3,sp.getNCC());
+                stmt.setFloat(4,sp.getGia());
+                stmt.setInt(5,sp.getSoLg());
                 stmt.setString(6,MaSP);
                 int rowCount = stmt.executeUpdate();
                 System.out.println(rowCount);
@@ -137,7 +139,7 @@ public class SanPhamDAL {
         }
         return result;
     }
-    public boolean searchMaSP(Vector<SanPhamDTO> sp_arr, String MaSP){
+    public boolean searchMaSP(Vector<SanPhamDTO> nv_arr, String MaSP){
         boolean result = false;
         if (openConnection()) {
             try {
@@ -149,12 +151,12 @@ public class SanPhamDAL {
                     SanPhamDTO sp = new SanPhamDTO();
                     sp.setMaSP(rs.getString("MaSP"));
                     sp.setTenSP(rs.getString("TenSP"));
+                    sp.setNCC(rs.getString("NCC"));
                     sp.setGia(rs.getFloat("GiaSP"));
                     sp.setSoLg(rs.getInt("SoLg"));
-                    sp.setNCC(rs.getString("NCC"));
-                    sp_arr.add(sp);
+                    nv_arr.add(sp);
                 }
-                if(sp_arr.size() > 0)
+                if(nv_arr.size() > 0)
                     result = true;
             } catch (SQLException ex){
                 System.out.println("Lỗi ở hàm searchSP của class SanPhamDAL");
@@ -164,4 +166,49 @@ public class SanPhamDAL {
         }
         return result;
     }
+
+    public boolean addSPtoCart(String MaSP){
+        boolean result = false;
+        if(openConnection()){
+            try{
+                System.out.println(MaSP);
+                String sql = "UPDATE SanPham SET SLTon = SLTon - 1 WHERE MaSp = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1,MaSP);
+                int rowCount = stmt.executeUpdate();
+                if(rowCount > 0)
+                    result = true;
+
+            }catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("addSPtoCart");
+            }finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
+    public boolean deleteSPfromCart(String MaSP){
+        boolean result = false;
+        if(openConnection()){
+            try{
+                System.out.println(MaSP);
+                String sql = "UPDATE SanPham SET SLTon = SLTon + 1 WHERE MaSp = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1,MaSP);
+                int rowCount = stmt.executeUpdate();
+                if(rowCount > 0)
+                    result = true;
+
+            }catch (SQLException e){
+                e.printStackTrace();
+                System.out.println("addSPtoCart");
+            }finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
 }
