@@ -101,6 +101,7 @@ public class SP_UI extends JFrame {
                         sp.setMaSP(JT_MaSP.getText());
                         sp.setTenSP(JT_TenSP.getText());
                         sp.setGia(Float.parseFloat(JT_GiaSP.getText()));
+                        sp.setSoLg(Integer.parseInt(JT_SoLg.getText()));
                         sp.setNCC(JT_NCC.getText());
                         JOptionPane.showMessageDialog(SP_Panel,spBLL.updateSP(sp,MaSP));
                         loadSP();
