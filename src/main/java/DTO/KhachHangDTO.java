@@ -6,19 +6,6 @@ public class KhachHangDTO {
     private String sdtKH;
     private String KHEmail;
 
-    public KhachHangDTO(){
-        MaKH = null;
-        TenKH = null;
-        sdtKH = null;
-        KHEmail = null;
-    }
-
-    public KhachHangDTO(String MaKH, String TenKH, String KHEmail){
-        this.MaKH = MaKH;
-        this.TenKH = TenKH;
-        this.sdtKH = sdtKH;
-        this.KHEmail = KHEmail;
-    }
 
     public String getMaKH(){
         return MaKH;

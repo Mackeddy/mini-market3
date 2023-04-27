@@ -25,9 +25,9 @@ public class KhachHangBLL {
         return "Xóa thất bại!";
     }
 
-    public String updateKhachHang(KhachHangDTO kh,String makh){
+    public String updateKhachHang(KhachHangDTO kh,String MaKH){
         // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
-        if(khDAL.updateKkhachHang(kh,makh))
+        if(khDAL.updateKhachHang(kh,MaKH))
             return "Cập nhật thành công!";
         return "Cập nhật thất bại!";
     }
