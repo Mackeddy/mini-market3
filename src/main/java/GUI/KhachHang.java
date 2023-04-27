@@ -45,6 +45,7 @@ KhachHangBLL khBLL = new KhachHangBLL();
                     kh.setSdtKH(JTSDT.getText());
                     kh.setKHEmail(JTEmail.getText());
                     JOptionPane.showMessageDialog(JPKhachHang, khBLL.addKhachHang(kh));
+                    loadKhachHangList();
                 }
             }
         });
@@ -78,7 +79,10 @@ KhachHangBLL khBLL = new KhachHangBLL();
                         int selectRow = JTKhachHang.getSelectedRow();
                         String MaKH = JTKhachHang.getValueAt(selectRow, 0).toString();
                         KhachHangDTO kh = new KhachHangDTO();
-                        kh.setMaKH(MaKH);
+                        kh.setMaKH(JTMaKH.getText());
+                        kh.setTenKH(JTTenKH.getText());
+                        kh.setSdtKH(JTSDT.getText());
+                        kh.setKHEmail(JTEmail.getText());
                         JOptionPane.showMessageDialog(JPKhachHang, khBLL.updateKhachHang(kh, MaKH));
                         loadKhachHangList();
                     }
@@ -97,7 +101,7 @@ KhachHangBLL khBLL = new KhachHangBLL();
                     else{
                         DefaultTableModel dtm = new DefaultTableModel();
                         dtm.addColumn("Mã khách hàng :");
-                        dtm.addColumn("Ten khách hàng :");
+                        dtm.addColumn("Tên khách hàng :");
                         dtm.addColumn("SDT");
                         dtm.addColumn("Email :");
                         JTKhachHang.setModel(dtm);
