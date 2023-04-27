@@ -1,5 +1,5 @@
+package main.java.GUI;
 import main.java.BLL.NCCBLL;
-
 import main.java.DTO.NCCDTO;
 
 

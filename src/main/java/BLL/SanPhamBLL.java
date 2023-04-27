@@ -40,4 +40,18 @@ public class SanPhamBLL {
         return "Không tìm thấy sản phẩm";
     }
 
+    public boolean addSPtoCart(String MaSP){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if (spDAL.addSPtoCart(MaSP))
+            return true;
+        return false;
+    }
+
+    public boolean deleteSPfromCart(String MaSP){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if (spDAL.deleteSPfromCart(MaSP))
+            return true;
+        return false;
+    }
+
 }

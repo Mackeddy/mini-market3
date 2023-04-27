@@ -7,7 +7,7 @@ public class KhachHangDAL {
     public boolean openConnection(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl="jdbc:sqlserver://localhost:1433;DatabaseName=QLKhachHang;encrypt=false;";
+            String dbUrl="jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
             String username="sa";
             String password="12345678";
             con = DriverManager.getConnection(dbUrl, username, password);

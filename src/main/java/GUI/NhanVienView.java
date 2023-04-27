@@ -105,6 +105,7 @@ public class NhanVienView extends JPanel{
                         //Lấy chỉ chỉ số của hàng cần sửa
                         int selectRow = JTNhanVien.getSelectedRow();
                         String MaNV = JTNhanVien.getValueAt(selectRow, 0).toString(); //Lấy mã nhân viên của hàng được chọn
+                        //Cập nhật nhân viên mới
                         NhanVienDTO nv = new NhanVienDTO();
                         nv.setMaNV(JTMaNV.getText());
                         nv.setTenNV(JTHoTenNV.getText());
