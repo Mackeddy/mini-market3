@@ -27,10 +27,10 @@ KhachHangBLL khBLL = new KhachHangBLL();
         loadKhachHangList();
     }
     public void initComponents(){
-        JPKhachHang.setPreferredSize(new Dimension(1128, 510));
+        JPKhachHang.setPreferredSize(new Dimension(1130, 545));
         add(JPKhachHang);
         JPKhachHang.setVisible(true); // hiển thị JPanel
-
+        setSize(1128, 510);
         JBThem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (JTMaKH.getText().trim().equals("") ||

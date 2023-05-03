@@ -12,7 +12,6 @@ public class MainView extends JFrame{
     private JButton JBNhaCungCap;
     private JButton JBBanHang;
     private JLabel JLAdmin;
-    private JButton JBDoanhThu;
     private JButton JBTroVe;
     private JPanel JPright;
     private JButton JBSanPham;
@@ -63,6 +62,7 @@ public class MainView extends JFrame{
         JBKhachHang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("Đang truy cập vào khách hàng");
                 JPright.removeAll();
                 JPright.add(new KhachHang());
                 JPright.revalidate(); // Cập nhật lại giao diện

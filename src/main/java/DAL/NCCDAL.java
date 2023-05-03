@@ -9,8 +9,8 @@ public class NCCDAL {
         public boolean openConnection(){
             try{
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                String dbUrl = "jdbc:sqlserver://localhost:1433;database=SanPham;encrypt=false";
-                String username ="sa"; String password = "123456aA@$";
+                String dbUrl = "jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
+                String username ="sa"; String password = "12345678";
                 con = DriverManager.getConnection(dbUrl,username,password);
                 return true;
             }catch (Exception e){
@@ -30,7 +30,7 @@ public class NCCDAL {
         Vector<NCCDTO> arr = new Vector<NCCDTO>();
         if(openConnection()){
             try {
-                String sql = "SELECT * FROM ministore.NCC";
+                String sql = "SELECT * FROM NCC";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){

@@ -7,7 +7,7 @@ public class KhachHangDAL {
     public boolean openConnection(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl="jdbc:sqlserver://localhost:1433;database=QLKhachHang;encrypt=false;";
+            String dbUrl="jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
             String username="sa";
             String password="12345678";
             con = DriverManager.getConnection(dbUrl, username, password);
@@ -37,8 +37,8 @@ public class KhachHangDAL {
                     KhachHangDTO khachhang = new KhachHangDTO();
                     khachhang.setMaKH(rs.getString("MaKH"));
                     khachhang.setTenKH(rs.getString("TenKH"));
-                    khachhang.setSdtKH(rs.getString("SDT"));
-                    khachhang.setKHEmail(rs.getString("Email"));
+                    khachhang.setSdtKH(rs.getString("SdtKH"));
+                    khachhang.setKHEmail(rs.getString("EmailKH"));
                     arr.add(khachhang);
                 }
             }catch(SQLException ex){

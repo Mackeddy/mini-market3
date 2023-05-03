@@ -3,11 +3,12 @@ import main.java.BLL.SanPhamBLL;
 import main.java.DTO.SanPhamDTO;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
 
-public class SP_UI extends JFrame {
+public class SP_UI extends JPanel {
 
     private JPanel SP_Panel;
     private JTextField JT_TenSP;
@@ -31,9 +32,9 @@ public class SP_UI extends JFrame {
     SanPhamBLL spBLL = new SanPhamBLL();
 
     public SP_UI(){
-        setContentPane(SP_Panel);
-        setTitle("Sản phẩm");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        SP_Panel.setPreferredSize(new Dimension(1130, 545));
+        add(SP_Panel);
+        SP_Panel.setVisible(true); // hiển thị JPanel
         setSize(1128, 510);
 //        setLocationRelativeTo(null);
         setVisible(true);

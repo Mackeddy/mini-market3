@@ -5,10 +5,11 @@ import main.java.DTO.NCCDTO;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
-public class NCC_UI extends JFrame{
+public class NCC_UI extends JPanel{
     private JPanel NCC_Panel;
     private JLabel JL_TenNCC;
     private JTextField JT_TenNCC;
@@ -26,9 +27,9 @@ public class NCC_UI extends JFrame{
     private JScrollPane JSNCC;
     NCCBLL nccBLL = new NCCBLL();
     NCC_UI(){
-        setContentPane(NCC_Panel);
-        setTitle("Nhà cung cấp");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        NCC_Panel.setPreferredSize(new Dimension(1130, 545));
+        add(NCC_Panel);
+        NCC_Panel.setVisible(true); // hiển thị JPanel
         setSize(1128, 510);
 //        setLocationRelativeTo(null);
         setVisible(true);

@@ -5,20 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DangNhap extends JFrame{
-    private JTextField tfTentaikhoan;
     private JButton JBDangnhap;
     private JButton JBThoat;
-    private JLabel JLTentaikhoan;
-    private JLabel JLMatkhau;
     private JPanel JPDangnhap;
-    private JPasswordField JFMatkhau;
     private JButton JBDangNhap;
+    private JTextField textField1;
+    private JPasswordField passwordField1;
 
 
     public DangNhap() {
         setContentPane(JPDangnhap);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 600);
+        setSize(500, 300);
+        setLocationRelativeTo(null);
         setVisible(true);
 
         JBDangNhap.addActionListener(new ActionListener() {
