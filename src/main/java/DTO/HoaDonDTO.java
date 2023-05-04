@@ -1,6 +1,6 @@
 package main.java.DTO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class HoaDonDTO {
     private String HD_ID;

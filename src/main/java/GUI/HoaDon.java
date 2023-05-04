@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.sql.Date;
 import java.util.Vector;
 
 import main.java.DTO.CTHDDTO;
@@ -32,7 +32,6 @@ public class HoaDon extends JPanel {
     private JTextField JTTrangThai;
     private JButton JBSua1;
     private JButton JBTimKiem1;
-    private JButton JBTimKiem2;
     private JTextField JTMaSP;
     private JTextField JTMaHD2;
     private JTextField JTSLmua;
@@ -52,7 +51,7 @@ public class HoaDon extends JPanel {
     }
 
     public void initComponents() {
-        JPHoaDon.setPreferredSize(new Dimension(1128, 510));
+        JPHoaDon.setPreferredSize(new Dimension(1130, 545));
         add(JPHoaDon);
         JPHoaDon.setVisible(true); // hiển thị JPanel
 
@@ -73,16 +72,8 @@ public class HoaDon extends JPanel {
                     hd.setKH(JTMaKH.getText());
                     hd.setNV(JTMaNV.getText());
                     String ngayTaoText = JTNgayTao.getText();
-                    if (ngayTaoText != null) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                        Date nt = null;
-                        try {
-                            nt = sdf.parse(ngayTaoText);
-                        } catch (ParseException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                        hd.setNgayTao(nt);
-                    }
+                    Date nt = Date.valueOf(ngayTaoText);
+                    hd.setNgayTao(nt);
                     hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
                     hd.setTrangThai(JTTrangThai.getText());
                     JOptionPane.showMessageDialog(JPHoaDon, hdBLL.addHoaDon(hd));
@@ -127,16 +118,9 @@ public class HoaDon extends JPanel {
                         hd.setNV(JTMaNV.getText());
                         hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
                         String ngayTaoText = JTNgayTao.getText();
-                        if (ngayTaoText != null) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                            Date nt = null;
-                            try {
-                                nt = sdf.parse(ngayTaoText);
-                            } catch (ParseException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                            hd.setNgayTao(nt);
-                        }
+                        Date nt = Date.valueOf(ngayTaoText);
+                        System.out.println(nt);
+                        hd.setNgayTao(nt);
                         hd.setTrangThai(JTTrangThai.getText());
                         JOptionPane.showMessageDialog(JPHoaDon, hdBLL.updateHoaDon(hd,MaHD));
                         loadHoaDonList();
@@ -248,37 +232,37 @@ public class HoaDon extends JPanel {
             }
         });
 
-        JBTimKiem2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    if(JTTimKiem2.getText().trim().equals(""))
-                        JOptionPane.showMessageDialog(JPCTHD, "Vui lòng nhập đầy đủ thông tin ");
-                    else{
-                        DefaultTableModel dtm2 = new DefaultTableModel();
-                        dtm2.addColumn( "Mã sản phẩm");
-                        dtm2.addColumn("Mã hóa đơn");
-                        dtm2.addColumn("Số lượng mua");
-                        dtm2.addColumn("Giá tiền");
-                        JTCTHD.setModel(dtm2);
-                        String old_MaHD2 = JTTimKiem2.getText();
-                        Vector<CTHDDTO> arrCTHD = new Vector<CTHDDTO>();
-                        cthdBLL.searchCTHD(arrCTHD, old_MaHD2);
-                        for(int i=0 ; i<=arrCTHD.size() ; i++) {
-                            CTHDDTO cthd = arrCTHD.get(i);
-                            String sp_id = cthd.getSP();
-                            String hd_id2 = cthd.getHD();
-                            int sl_mua = cthd.getSLmua();
-                            Float gia_tien = cthd.getGiaTien();
-                            Object[] row ={sp_id, hd_id2, sl_mua, gia_tien};
-                            dtm2.addRow(row);
-                        }
-                    }
-                }catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(JPCTHD, "Thông tin hóa đơn không hợp lệ");
-                }
-            }
-        });
+//        JBTimKiem2.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                try{
+//                    if(JTTimKiem2.getText().trim().equals(""))
+//                        JOptionPane.showMessageDialog(JPCTHD, "Vui lòng nhập đầy đủ thông tin ");
+//                    else{
+//                        DefaultTableModel dtm2 = new DefaultTableModel();
+//                        dtm2.addColumn( "Mã sản phẩm");
+//                        dtm2.addColumn("Mã hóa đơn");
+//                        dtm2.addColumn("Số lượng mua");
+//                        dtm2.addColumn("Giá tiền");
+//                        JTCTHD.setModel(dtm2);
+//                        String old_MaHD2 = JTTimKiem2.getText();
+//                        Vector<CTHDDTO> arrCTHD = new Vector<CTHDDTO>();
+//                        cthdBLL.searchCTHD(arrCTHD, old_MaHD2);
+//                        for(int i=0 ; i<=arrCTHD.size() ; i++) {
+//                            CTHDDTO cthd = arrCTHD.get(i);
+//                            String sp_id = cthd.getSP();
+//                            String hd_id2 = cthd.getHD();
+//                            int sl_mua = cthd.getSLmua();
+//                            Float gia_tien = cthd.getGiaTien();
+//                            Object[] row ={sp_id, hd_id2, sl_mua, gia_tien};
+//                            dtm2.addRow(row);
+//                        }
+//                    }
+//                }catch(NumberFormatException ex){
+//                    JOptionPane.showMessageDialog(JPCTHD, "Thông tin hóa đơn không hợp lệ");
+//                }
+//            }
+//        });
         setVisible(true);
     }
 

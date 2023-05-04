@@ -1,7 +1,7 @@
 package main.java.DAL;
 import main.java.DTO.HoaDonDTO;
 import main.java.DTO.KhachHangDTO;
-//import java.util.Date;
+import java.sql.Date;
 
 import javax.swing.*;
 import java.sql.*;
@@ -13,7 +13,7 @@ public class HoaDonDAL {
     public boolean openConnection(){
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String dbUrl="jdbc:sqlserver://localhost:1433;DatabaseName=QLKhachHang;encrypt=false;";
+            String dbUrl="jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
             String username="sa"; String password="12345678";
             con = DriverManager.getConnection(dbUrl, username, password);
             return true;
@@ -123,7 +123,7 @@ public class HoaDonDAL {
                 stmt.setString(2, hd.getKH());
                 stmt.setString(3, hd.getNV());
                 stmt.setFloat(4, hd.getTongTien());
-                stmt.setDate(5, (Date) NgayTao);
+                stmt.setDate(5, hd.getNgayTao());
                 stmt.setString(6,hd.getTrangThai());
                 stmt.setString(7, mahd);
                 int rowCount = stmt.executeUpdate();
