@@ -12,8 +12,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class TaiKhoanView extends  JPanel{
-    private JTextField JTTimKiem;
-    private JButton JBTimKiem;
     private JButton JBThem;
     private JButton JBXoa;
     private JTable TBTaiKhoan;
@@ -27,7 +25,6 @@ public class TaiKhoanView extends  JPanel{
     private JLabel JLMaTK;
     private JLabel JLTenTK;
     private JLabel JLMatKhau;
-    private JLabel JLTimkiem;
     private JScrollPane JSTaiKhoan;
 
     AdminBLL tkBLL = new AdminBLL();
@@ -37,7 +34,7 @@ public class TaiKhoanView extends  JPanel{
     }
 
     public void initComponents(){
-        JPTaiKhoan.setPreferredSize(new Dimension(1128, 510));
+        JPTaiKhoan.setPreferredSize(new Dimension(1130, 545));
         add(JPTaiKhoan);
         JBThem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {

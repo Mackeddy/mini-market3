@@ -20,4 +20,22 @@ public class PhieuNhapBLL {
             return "Thêm phiếu nhập thành công";
         return "Thêm phiếu nhập thất bại";
     }
+
+
+    public String updatePhieuNhap(PhieuNhapDTO pn, String MaPN){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if (pnDAL.updatePhieuNhap(pn, MaPN))
+            return "Cập nhật phiếu nhập thành công";
+        return "Cập nhật phiếu nhập thất bại";
+    }
+
+    public boolean searchmaPN(Vector<PhieuNhapDTO> pn_arr, String MaPN){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        if(!(pnDAL.hasMaPN(MaPN)))
+            return false;
+        if (pnDAL.searchMaPN(pn_arr, MaPN))
+            return true;
+        return false;
+    }
+
 }
