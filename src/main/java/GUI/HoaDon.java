@@ -158,6 +158,25 @@ public class HoaDon extends JPanel {
                         String trangthai = hd.getTrangThai();
                         Object[] row ={hd_id,kh_id,nv_id,tongtien,ngaytao,trangthai};
                         dtm.addRow(row);
+
+                        //DefaultTableModel dtm2 = new DefaultTableModel();
+                        dtm.addColumn("Mã sản phẩm");
+                        dtm.addColumn("Mã hóa đơn");
+                        dtm.addColumn("Số lượng mua");
+                        dtm.addColumn("Giá tiền");
+                        JTCTHD.setModel(dtm);
+                        String old_MaHD2 = JTTimKiem.getText();
+                        Vector<CTHDDTO> arrCTHD = new Vector<CTHDDTO>();
+                        cthdBLL.searchCTHD(arrCTHD, old_MaHD2);
+                        for(int j=0 ; j<=arrCTHD.size() ; j++){
+                            CTHDDTO cthd = arrCTHD.get(i);
+                            String hd_id2 = cthd.getHD();
+                            String id_sp2 = cthd.getSP();
+                            int sl_mua = cthd.getSLmua();
+                            Float gia_tien = cthd.getGiaTien();
+                            Object[] row2 ={hd_id2,id_sp2,sl_mua,gia_tien};
+                            dtm.addRow(row2);
+                        }
                     }
                   }
                 }catch(NumberFormatException ex){
