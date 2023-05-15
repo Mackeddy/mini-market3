@@ -1,9 +1,9 @@
 package main.java.DTO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PhieuNhapDTO {
-    private String MaPN, MaNCC;
+    private String MaPN, MaNCC, TrangThai;
     private Float TongTien;
     private Date NgayNhap;
 
@@ -30,5 +30,11 @@ public class PhieuNhapDTO {
     }
     public void setNgayNhap(Date NgayNhap){
         this.NgayNhap = NgayNhap;
+    }
+    public String getTrangThai(){
+        return TrangThai;
+    }
+    public void setTrangThai(String TrangThai){
+        this.TrangThai = TrangThai;
     }
 }
