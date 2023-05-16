@@ -130,51 +130,54 @@ public class HoaDon extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                if(JTTimKiem.getText().trim().equals(""))
-                    JOptionPane.showMessageDialog(JPHoaDon, "Vui lòng nhập đầy đủ thông tin ");
-                else{
-                    DefaultTableModel dtm = new DefaultTableModel();
-                    dtm.addColumn( "Mã hóa đơn");
-                    dtm.addColumn("Mã khách hàng");
-                    dtm.addColumn("Mã nhân viên");
-                    dtm.addColumn("Tổng tiền");
-                    dtm.addColumn( "Ngày tạo");
-                    dtm.addColumn( "Trạng thái");
-                    JTHoaDon.setModel(dtm);
-                    String old_MaHD = JTTimKiem.getText();
-                    Vector<HoaDonDTO> arrHD = new Vector<HoaDonDTO>();
-                    hdBLL.searchMaHD(arrHD, old_MaHD);
-                    for(int i=0 ; i<=arrHD.size() ; i++) {
-                        HoaDonDTO hd = arrHD.get(i);
-                        String hd_id = hd.getHD_ID();
-                        String kh_id = hd.getKH();
-                        String nv_id = hd.getNV();
-                        Float tongtien = hd.getTongTien();
-                        Date ngaytao = hd.getNgayTao();
-                        String trangthai = hd.getTrangThai();
-                        Object[] row ={hd_id,kh_id,nv_id,tongtien,ngaytao,trangthai};
-                        dtm.addRow(row);
+                    if(JTTimKiem.getText().trim().equals(""))
+                        JOptionPane.showMessageDialog(JPHoaDon, "Vui lòng nhập đầy đủ thông tin ");
+                    else{
+                        DefaultTableModel dtm = new DefaultTableModel();
+                        dtm.addColumn( "Mã hóa đơn");
+                        dtm.addColumn("Mã khách hàng");
+                        dtm.addColumn("Mã nhân viên");
+                        dtm.addColumn("Tổng tiền");
+                        dtm.addColumn( "Ngày tạo");
+                        dtm.addColumn( "Trạng thái");
+                        JTHoaDon.setModel(dtm);
+                        String old_MaHD = JTTimKiem.getText();
+                        Vector<HoaDonDTO> arrHD = new Vector<HoaDonDTO>();
+                        hdBLL.searchMaHD(arrHD, old_MaHD);
+                        for(int i=0 ; i < arrHD.size() ; i++) {
+                            HoaDonDTO hd = arrHD.get(i);
+                            String hd_id = hd.getHD_ID();
+                            String kh_id = hd.getKH();
+                            String nv_id = hd.getNV();
+                            Float tongtien = hd.getTongTien();
+                            Date ngaytao = hd.getNgayTao();
+                            String trangthai = hd.getTrangThai();
+                            Object[] row = {hd_id, kh_id, nv_id, tongtien, ngaytao, trangthai};
+                            dtm.addRow(row);
 
-                        //DefaultTableModel dtm2 = new DefaultTableModel();
-                        dtm.addColumn("Mã sản phẩm");
-                        dtm.addColumn("Mã hóa đơn");
-                        dtm.addColumn("Số lượng mua");
-                        dtm.addColumn("Giá tiền");
-                        JTCTHD.setModel(dtm);
-                        String old_MaHD2 = JTTimKiem.getText();
-                        Vector<CTHDDTO> arrCTHD = new Vector<CTHDDTO>();
-                        cthdBLL.searchCTHD(arrCTHD, old_MaHD2);
-                        for(int j=0 ; j<=arrCTHD.size() ; j++){
-                            CTHDDTO cthd = arrCTHD.get(i);
-                            String hd_id2 = cthd.getHD();
-                            String id_sp2 = cthd.getSP();
-                            int sl_mua = cthd.getSLmua();
-                            Float gia_tien = cthd.getGiaTien();
-                            Object[] row2 ={hd_id2,id_sp2,sl_mua,gia_tien};
-                            dtm.addRow(row2);
+                            System.out.println("Đang trong hàm search CTHD của GUI");
+                            DefaultTableModel dtm2 = new DefaultTableModel();
+                            dtm2.addColumn("Mã sản phẩm");
+                            dtm2.addColumn("Mã hóa đơn");
+                            dtm2.addColumn("Số lượng mua");
+                            dtm2.addColumn("Giá tiền");
+
+                            JTCTHD.setModel(dtm2);
+                            Vector<CTHDDTO> arrCTHD = new Vector<CTHDDTO>();
+                            cthdBLL.searchCTHD(arrCTHD, old_MaHD);
+                            System.out.println(old_MaHD);
+                            for (int j=0 ; j < arrCTHD.size(); j++){
+                                CTHDDTO cthd = arrCTHD.get(j);
+                                String hd_id2 = cthd.getHD();
+                                String id_sp2 = cthd.getSP();
+                                int sl_mua = cthd.getSLmua();
+                                float gia_tien = cthd.getGiaTien();
+                                Object[] row2 ={hd_id2,id_sp2,sl_mua,gia_tien};
+                                dtm2.addRow(row2);
+                                System.out.println(hd_id2 + id_sp2 + sl_mua + gia_tien);
+                            }
                         }
                     }
-                  }
                 }catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(JPHoaDon, "Thông tin hóa đơn không hợp lệ");
                 }

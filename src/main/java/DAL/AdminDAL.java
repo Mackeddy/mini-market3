@@ -96,6 +96,25 @@ public class AdminDAL {
         return result;
     }
 
+    public boolean checkMatKhau(String MatKhau){
+        boolean result = false;
+        if (openConnection()) {
+            try {
+                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
+                String sql ="SELECT * FROM TaiKhoan WHERE MatKhau = '" + MatKhau + "'";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
+                result = rs.next();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            } finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
+
     public boolean deleteTaiKhoan(String MaTK){
         boolean result = false;
         if (openConnection()) {

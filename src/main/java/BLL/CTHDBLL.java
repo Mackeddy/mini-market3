@@ -8,7 +8,7 @@ public class CTHDBLL {
     public Vector<CTHDDTO> getAllCTHD(){ return cthddal.getAllCTHD(); }
 
     public String addCTHD(CTHDDTO cthd){
-        if(cthddal.hasIdCTHD(cthd.getHD()))
+        if(cthddal.hasHoaDonID(cthd.getHD()))
             return "Mã hóa đơn đã tồn tại";
         if(cthddal.addCTHD(cthd))
             return "Thêm thành công";
@@ -21,11 +21,12 @@ public class CTHDBLL {
         return "Thêm thất bại";
     }
 
-    public String searchCTHD(Vector<CTHDDTO> arrHD, String ct){
-        if(cthddal.hasIdCTHD(ct))
+    public String searchCTHD(Vector<CTHDDTO> arrHD, String mahd){
+        if(!cthddal.hasHoaDonID(mahd)) {
             return "Hóa đơn không tồn tại";
-        if(cthddal.searchCTHD(arrHD,ct))
-            return null;
+        }
+        if(cthddal.searchCTHD(arrHD, mahd))
+            return "Có CTHD";
         return "Không tìm thấy hóa đơn";
     }
 }

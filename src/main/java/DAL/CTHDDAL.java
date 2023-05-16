@@ -19,8 +19,8 @@ public class CTHDDAL {
     }
     public void closeConnection(){
         try{
-            if(con!=null);
-            con.close();
+            if(con!=null)
+                con.close();
         }catch(SQLException ex){
             System.out.println(ex);
         }
@@ -68,11 +68,11 @@ public boolean addCTHD(CTHDDTO ct){
         return result;
 }
 
-public boolean hasIdCTHD(String ct){
+    public boolean hasHoaDonID(String mahd){
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "SELECT * FROM CTHD WHERE MaHD = '" + ct +"'";
+                String sql = "SELECT * FROM HoaDon WHERE MaHD = '" + mahd + "'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 result = rs.next();
@@ -82,8 +82,9 @@ public boolean hasIdCTHD(String ct){
                 closeConnection();
             }
         }
+        System.out.println("Result của CTHD DAL: " + result);
         return result;
-}
+    }
 
 public boolean updateCTHD(CTHDDTO cthd, String ct){
         boolean result = false;
@@ -111,10 +112,11 @@ public boolean searchCTHD(Vector<CTHDDTO> arrHD, String ct){
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "SELECT * FROM CTHD WHERE MaHD = '"+ ct +"'";
+                String sql = "SELECT * FROM CTHD WHERE MaHD = '" + ct + "'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while(rs.next()){
+                    System.out.println("trong vòng lặp");
                     CTHDDTO cthd = new CTHDDTO();
                     cthd.setSP(rs.getString("MaSP"));
                     cthd.setHD(rs.getString("MaHD"));
@@ -122,11 +124,17 @@ public boolean searchCTHD(Vector<CTHDDTO> arrHD, String ct){
                     cthd.setGiaTien(rs.getFloat("GiaTien"));
                     arrHD.add(cthd);
                 }
-                if(arrHD.size() > 0)
+                if(arrHD.size() > 0) {
                     result = true;
+                    System.out.println("có bản ghi");
+                }
+                else {
+                    System.out.println("Không có bản ghi");
+                }
             }catch(SQLException ex){
                 System.out.println(ex);
             }finally {
+                System.out.println("CSDL đang được đóng");
                 closeConnection();
             }
         }
