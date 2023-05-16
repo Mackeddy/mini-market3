@@ -8,7 +8,6 @@ import main.java.DTO.NhanVienDTO;
 import java.util.Vector;
 public class AdminBLL {
     AdminDAL tkDAL = new AdminDAL();
-    NhanVienDAL nvDAL = new NhanVienDAL();
     public Vector<AdminDTO> getAllTK(){
         return tkDAL.getAllTK();
     }
@@ -39,7 +38,7 @@ public class AdminBLL {
     public boolean CheckLogin(String MaNV, String MatKhau){
         // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
         System.out.println("Đang check đăng nhập");
-        if (nvDAL.hasMaNV(MaNV) && tkDAL.checkMatKhau(MatKhau)) {
+        if (tkDAL.hasMaNVinTK(MaNV) && tkDAL.checkMatKhau(MatKhau)) {
             return true;
         }
         return false;
