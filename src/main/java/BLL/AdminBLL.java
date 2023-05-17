@@ -1,5 +1,6 @@
 package main.java.BLL;
 
+import main.java.DAL.NhanVienDAL;
 import main.java.DTO.AdminDTO;
 import main.java.DAL.AdminDAL;
 import main.java.DTO.NhanVienDTO;
@@ -32,6 +33,15 @@ public class AdminBLL {
         if (tkDAL.updateTaiKhoan(tk, MaTK_old))
             return "Cập nhật tài khoản thành công";
         return "Cập nhật tài khoản thất bại";
+    }
+
+    public boolean CheckLogin(String MaNV, String MatKhau){
+        // BLL xử lý logic và đưa xuống DAL để DAL add dữ liệu vào csdl
+        System.out.println("Đang check đăng nhập");
+        if (tkDAL.hasMaNVinTK(MaNV) && tkDAL.checkMatKhau(MatKhau)) {
+            return true;
+        }
+        return false;
     }
 
 }

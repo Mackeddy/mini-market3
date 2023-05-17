@@ -1,5 +1,7 @@
 package main.java.GUI;
 
+import main.java.BLL.AdminBLL;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +11,9 @@ public class DangNhap extends JFrame{
     private JButton JBThoat;
     private JPanel JPDangnhap;
     private JButton JBDangNhap;
-    private JTextField textField1;
-    private JPasswordField passwordField1;
+    private JTextField JTTenTaiKhoan;
+    private JPasswordField JTMatKhau;
+    AdminBLL adminBLL = new AdminBLL();
 
 
     public DangNhap() {
@@ -23,19 +26,31 @@ public class DangNhap extends JFrame{
         JBDangNhap.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Đã nhấn nút đăng nhập");
-                MainView mainView = new MainView();
-                mainView.setSize(900, 600); // Đặt kích thước của frame DangNhap dựa trên nội dung của các thành phần bên trong
-                mainView.setLocationRelativeTo(null); // Đặt vị trí của frame DangNhap giữa màn hình
-                mainView.setVisible(true);
-                dispose();
+                if (JTTenTaiKhoan.getText().trim().equals("") ||
+                        JTMatKhau.getText().trim().equals(""))
+                    showMessageDialog("Bạn chưa nhập đủ thông tin");
+                else{
+                    System.out.println(JTTenTaiKhoan.getText() + JTMatKhau.getText());
+                    if (adminBLL.CheckLogin(JTTenTaiKhoan.getText(), JTMatKhau.getText())){
+                        showMessageDialog("Đăng Nhập Thành Công");
+                        MainView mainView = new MainView();
+                        mainView.setLocationRelativeTo(null); // Đặt vị trí của frame DangNhap giữa màn hình
+                        mainView.setVisible(true);
+                        dispose();
+                    }
+                    else{
+                        showMessageDialog("Tên Tài Khoản hoặc Mật Khẩu không chính xác");
+                    }
+                }
             }
         });
     }
 
+    public void showMessageDialog(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
     public static void main(String[] args) {
         new DangNhap();
-        System.out.println("Đã khởi tạo DangNhap");
-        // Hiển thị frame
     }
 }
