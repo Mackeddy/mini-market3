@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.Vector;
 public class HoaDonDAL {
     private Connection con;
-    private java.util.Date NgayTao;
 
     public boolean openConnection(){
         try{
@@ -65,7 +64,7 @@ public class HoaDonDAL {
                 stmt.setString(2, hd.getKH());
                 stmt.setString(3, hd.getNV());
                 stmt.setFloat(4,hd.getTongTien());
-                stmt.setDate(5, (Date) NgayTao);
+                stmt.setDate(5, hd.getNgayTao());
                 stmt.setString(6,hd.getTrangThai());
                 if(stmt.executeUpdate() >= 1)
                     return true;

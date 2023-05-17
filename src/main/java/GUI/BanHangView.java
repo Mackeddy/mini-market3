@@ -72,28 +72,6 @@ public class BanHangView extends JPanel {
         JBThem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (JTMaHD.getText().trim().equals("") ||
-                        JTMaKH.getText().trim().equals("") ||
-                        JTMaNV.getText().trim().equals("") ||
-                        JTTongTien.getText().trim().equals("") ||
-                        JTNgayTao.getText().trim().equals("") ||
-                        JTTrangThai.getText().trim().equals(""))
-                    JOptionPane.showMessageDialog(JPBanHang, "Vui long nhap day du thong tin");
-                else {
-                    HoaDonDTO hd = new HoaDonDTO();
-                    hd.setHD_ID(JTMaHD.getText());
-                    hd.setKH(JTMaKH.getText());
-                    hd.setNV(JTMaNV.getText());
-                    String ngayTaoText = JTNgayTao.getText();
-                    Date nt = Date.valueOf(ngayTaoText);
-                    hd.setNgayTao(nt);
-                    hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
-                    hd.setTrangThai(JTTrangThai.getText());
-                    JOptionPane.showMessageDialog(JPBanHang, hoaDonBLL.addHoaDon(hd));
-                    loadSP();
-                    }
-
                 addSPtoCart();
                 float TongTien = 0.0f;
                 for (int i = 0; i < JTGioHang.getRowCount(); i++){
@@ -119,6 +97,33 @@ public class BanHangView extends JPanel {
                 }
                 else {
                     JTGioHang.getModel().setValueAt(SL - 1, selectrow, 3);
+                }
+            }
+        });
+
+        JBTaoHD.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (JTMaHD.getText().trim().equals("") ||
+                        JTMaKH.getText().trim().equals("") ||
+                        JTMaNV.getText().trim().equals("") ||
+                        JTTongTien.getText().trim().equals("") ||
+                        JTNgayTao.getText().trim().equals("") ||
+                        JTTrangThai.getText().trim().equals(""))
+                    JOptionPane.showMessageDialog(JPBanHang, "Vui long nhap day du thong tin");
+                else {
+                    HoaDonDTO hd = new HoaDonDTO();
+                    hd.setHD_ID(JTMaHD.getText());
+                    hd.setKH(JTMaKH.getText());
+                    hd.setNV(JTMaNV.getText());
+                    String ngayTaoText = JTNgayTao.getText();
+                    Date nt = Date.valueOf(ngayTaoText);
+                    hd.setNgayTao(nt);
+                    hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
+                    hd.setTrangThai(JTTrangThai.getText());
+                    JOptionPane.showMessageDialog(JPBanHang, hoaDonBLL.addHoaDon(hd));
+                    loadSP();
                 }
             }
         });
