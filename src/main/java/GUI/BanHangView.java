@@ -1,5 +1,7 @@
 package main.java.GUI;
 
+import main.java.BLL.HoaDonBLL;
+import main.java.DTO.HoaDonDTO;
 import main.java.DTO.SanPhamDTO;
 import main.java.BLL.SanPhamBLL;
 
@@ -8,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.util.Vector;
 
 public class BanHangView extends JPanel {
@@ -49,6 +52,7 @@ public class BanHangView extends JPanel {
 
     private DefaultTableModel modelGioHang;
     SanPhamBLL spBLL = new SanPhamBLL();
+    HoaDonBLL hoaDonBLL = new HoaDonBLL();
 
     public BanHangView() {
         initComponents();
@@ -68,6 +72,28 @@ public class BanHangView extends JPanel {
         JBThem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                if (JTMaHD.getText().trim().equals("") ||
+                        JTMaKH.getText().trim().equals("") ||
+                        JTMaNV.getText().trim().equals("") ||
+                        JTTongTien.getText().trim().equals("") ||
+                        JTNgayTao.getText().trim().equals("") ||
+                        JTTrangThai.getText().trim().equals(""))
+                    JOptionPane.showMessageDialog(JPBanHang, "Vui long nhap day du thong tin");
+                else {
+                    HoaDonDTO hd = new HoaDonDTO();
+                    hd.setHD_ID(JTMaHD.getText());
+                    hd.setKH(JTMaKH.getText());
+                    hd.setNV(JTMaNV.getText());
+                    String ngayTaoText = JTNgayTao.getText();
+                    Date nt = Date.valueOf(ngayTaoText);
+                    hd.setNgayTao(nt);
+                    hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
+                    hd.setTrangThai(JTTrangThai.getText());
+                    JOptionPane.showMessageDialog(JPBanHang, hoaDonBLL.addHoaDon(hd));
+                    loadSP();
+                    }
+
                 addSPtoCart();
                 float TongTien = 0.0f;
                 for (int i = 0; i < JTGioHang.getRowCount(); i++){
@@ -99,7 +125,33 @@ public class BanHangView extends JPanel {
 
         JPBanHang.setVisible(true); // hiển thị JPanel
     }
-
+    /*
+JBThem.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (JTMaHD.getText().trim().equals("") ||
+                    JTMaKH.getText().trim().equals("") ||
+                    JTMaNV.getText().trim().equals("") ||
+                    JTTongTien.getText().trim().equals("") ||
+                    JTNgayTao.getText().trim().equals("") ||
+                    JTTrangThai.getText().trim().equals(""))
+                JOptionPane.showMessageDialog(JPBanHang, "Vui long nhap day du thong tin");
+            else {
+                HoaDonDTO hd = new HoaDonDTO();
+                hd.setHD_ID(JTMaHD.getText());
+                hd.setKH(JTMaKH.getText());
+                hd.setNV(JTMaNV.getText());
+                String ngayTaoText = JTNgayTao.getText();
+                Date nt = Date.valueOf(ngayTaoText);
+                hd.setNgayTao(nt);
+                hd.setTongTien(Float.parseFloat(JTTongTien.getText()));
+                hd.setTrangThai(JTTrangThai.getText());
+                JOptionPane.showMessageDialog(JPHoaDon, hdBLL.addHoaDon(hd));
+                loadHoaDonList();
+            }
+        }
+    });
+*/
     public void loadSP() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mã sản phẩm");
