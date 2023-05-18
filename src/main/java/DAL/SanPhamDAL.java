@@ -62,9 +62,9 @@ public class SanPhamDAL {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
-                stmt.setString(3,sp.getNCC());
-                stmt.setFloat(4,sp.getGia());
-                stmt.setInt(5,sp.getSoLg());
+                stmt.setFloat(3,sp.getGia());
+                stmt.setInt(4,sp.getSoLg());
+                stmt.setString(5,sp.getNCC());
                 if(stmt.executeUpdate()>=1)
                     result = true;
 
@@ -121,9 +121,9 @@ public class SanPhamDAL {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
-                stmt.setString(3,sp.getNCC());
-                stmt.setFloat(4,sp.getGia());
-                stmt.setInt(5,sp.getSoLg());
+                stmt.setFloat(3,sp.getGia());
+                stmt.setInt(4,sp.getSoLg());
+                stmt.setString(5,sp.getNCC());
                 stmt.setString(6,MaSP);
                 int rowCount = stmt.executeUpdate();
                 System.out.println(rowCount);
@@ -151,9 +151,9 @@ public class SanPhamDAL {
                     SanPhamDTO sp = new SanPhamDTO();
                     sp.setMaSP(rs.getString("MaSP"));
                     sp.setTenSP(rs.getString("TenSP"));
-                    sp.setNCC(rs.getString("NCC"));
                     sp.setGia(rs.getFloat("GiaSP"));
                     sp.setSoLg(rs.getInt("SoLg"));
+                    sp.setNCC(rs.getString("NCC"));
                     nv_arr.add(sp);
                 }
                 if(nv_arr.size() > 0)
