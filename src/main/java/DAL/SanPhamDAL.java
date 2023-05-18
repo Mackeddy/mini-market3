@@ -58,7 +58,7 @@ public class SanPhamDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "INSERT INTO ministore.SP values(?,?,?,?,?)";
+                String sql = "INSERT INTO SanPham values(?,?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
@@ -81,7 +81,7 @@ public class SanPhamDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql ="SELECT * FROM ministore.SP WHERE MaSP ='"+MaSP+"'";
+                String sql ="SELECT * FROM SanPham WHERE MaSP ='"+MaSP+"'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 result = rs.next();
@@ -98,7 +98,7 @@ public class SanPhamDAL {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "DELETE  FROM ministore.SP WHERE MaSP ='" + MaSP + "'";
+                String sql = "DELETE  FROM SanPham WHERE MaSP ='" + MaSP + "'";
                 Statement stmt = con.createStatement();
                 int rowCount = stmt.executeUpdate(sql);
                 if (rowCount > 0)
@@ -117,7 +117,7 @@ public class SanPhamDAL {
         if(openConnection()){
             try{
                 System.out.println(MaSP);
-                String sql = "UPDATE ministore.SP SET MaSP = ?, TenSP = ?, NCC = ?, GiaSP = ?, SoLg = ?"+" WHERE MaSp = ?";
+                String sql = "UPDATE SanPham SET MaSP = ?, TenSP = ?, NCC = ?, GiaSP = ?, SoLg = ?"+" WHERE MaSp = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,sp.getMaSP());
                 stmt.setString(2,sp.getTenSP());
@@ -144,7 +144,7 @@ public class SanPhamDAL {
         if (openConnection()) {
             try {
                 //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
-                String sql = "SELECT * FROM ministore.SP WHERE MaSP = '" + MaSP + "'";
+                String sql = "SELECT * FROM SanPham WHERE MaSP = '" + MaSP + "'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){
@@ -152,13 +152,14 @@ public class SanPhamDAL {
                     sp.setMaSP(rs.getString("MaSP"));
                     sp.setTenSP(rs.getString("TenSP"));
                     sp.setGia(rs.getFloat("GiaSP"));
-                    sp.setSoLg(rs.getInt("SoLg"));
-                    sp.setNCC(rs.getString("NCC"));
+                    sp.setSoLg(rs.getInt("SLTon"));
+                    sp.setNCC(rs.getString("MaNCC"));
                     nv_arr.add(sp);
                 }
                 if(nv_arr.size() > 0)
                     result = true;
             } catch (SQLException ex){
+                System.out.println(ex);
                 System.out.println("Lỗi ở hàm searchSP của class SanPhamDAL");
             } finally {
                 closeConnection();

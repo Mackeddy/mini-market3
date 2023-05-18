@@ -1,5 +1,6 @@
 package main.java.GUI;
 import main.java.BLL.SanPhamBLL;
+import main.java.DTO.NhanVienDTO;
 import main.java.DTO.SanPhamDTO;
 
 import javax.swing.*;
@@ -116,16 +117,32 @@ public class SP_UI extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-
-
                     if (JT_MaSP.getText().trim().equals(""))
                         JOptionPane.showMessageDialog(SP_Panel, "Vui lòng nhập lại thông tin");
 
                     else {
+                        DefaultTableModel model = new DefaultTableModel();
+                        model.addColumn("Mã Sản Phẩm");
+                        model.addColumn("Tên Sản Phẩm");
+                        model.addColumn("Giá ");
+                        model.addColumn("Số Lượng");
+                        model.addColumn("Nhà Cung Cấp");
+
+                        JTB_SP.setModel(model);
                         String  MaSP_old = JT_MaSP.getText();
                         Vector<SanPhamDTO> sp_arr = new Vector<SanPhamDTO>();
                         spBLL.searchMaSP(sp_arr, MaSP_old);
-                        JOptionPane.showMessageDialog(SP_Panel, spBLL.searchMaSP(sp_arr, MaSP_old));
+                        for (int i = 0; i < sp_arr.size(); i++){
+                            SanPhamDTO sp = sp_arr.get(i);
+                            String MaSP = sp.getMaSP();
+                            String TenSP = sp.getTenSP();
+                            float GiaSP = sp.getGia();
+                            int SLTon = sp.getSoLg();
+                            String MaNCC = sp.getNCC();
+                            Object[] row = {MaSP, TenSP, GiaSP, SLTon, MaNCC};
+                            model.addRow(row);
+                        }
+                        //JOptionPane.showMessageDialog(SP_Panel, spBLL.searchMaSP(sp_arr, MaSP_old));
                     }
 
                 } catch (NumberFormatException ex){

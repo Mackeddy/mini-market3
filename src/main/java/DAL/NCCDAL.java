@@ -53,7 +53,7 @@ public class NCCDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql = "INSERT INTO ministore.NCC values(?,?,?,?)";
+                String sql = "INSERT INTO NCC values(?,?,?,?)";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,ncc.getMaNCC());
                 stmt.setString(2,ncc.getTenNCC());
@@ -75,7 +75,7 @@ public class NCCDAL {
         boolean result = false;
         if(openConnection()){
             try{
-                String sql ="SELECT * FROM ministore.NCC WHERE MaNCC ='"+MaNCC+"'";
+                String sql ="SELECT * FROM NCC WHERE MaNCC ='"+MaNCC+"'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 result = rs.next();
@@ -92,7 +92,7 @@ public class NCCDAL {
         boolean result = false;
         if (openConnection()) {
             try {
-                String sql = "DELETE  FROM ministore.NCC WHERE MaNCC ='" + MaNCC + "'";
+                String sql = "DELETE  FROM NCC WHERE MaNCC ='" + MaNCC + "'";
                 Statement stmt = con.createStatement();
                 int rowCount = stmt.executeUpdate(sql);
                 if (rowCount > 0)
@@ -111,7 +111,7 @@ public class NCCDAL {
         if(openConnection()){
             try{
                 System.out.println(MaNCC);
-                String sql = "UPDATE ministore.NCC SET MaNCC = ?, TenNCC = ?, SdtNCC = ?, EmailNCC = ?"+" WHERE MaNCC = ?";
+                String sql = "UPDATE NCC SET MaNCC = ?, TenNCC = ?, SdtNCC = ?, EmailNCC = ?"+" WHERE MaNCC = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1,ncc.getMaNCC());
                 stmt.setString(2,ncc.getTenNCC());
@@ -137,7 +137,7 @@ public class NCCDAL {
         if (openConnection()) {
             try {
                 //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
-                String sql = "SELECT * FROM ministore.NCC WHERE MaNCC = '" + MaNCC + "'";
+                String sql = "SELECT * FROM NCC WHERE MaNCC = '" + MaNCC + "'";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(sql);
                 while (rs.next()){

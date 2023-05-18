@@ -8,7 +8,6 @@ import java.awt.event.ActionListener;
 
 public class DangNhap extends JFrame{
     private JButton JBDangnhap;
-    private JButton JBThoat;
     private JPanel JPDangnhap;
     private JButton JBDangNhap;
     private JTextField JTTenTaiKhoan;

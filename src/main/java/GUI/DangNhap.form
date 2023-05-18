@@ -31,19 +31,6 @@
           <text value="Đăng Nhập"/>
         </properties>
       </component>
-      <component id="a5af7" class="javax.swing.JButton" binding="JBThoat">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-14407117"/>
-          <enabled value="true"/>
-          <font/>
-          <foreground color="-1971719"/>
-          <hideActionText value="false"/>
-          <text value="Thoát"/>
-        </properties>
-      </component>
       <component id="dc1d4" class="javax.swing.JButton" binding="JBDangNhap">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>

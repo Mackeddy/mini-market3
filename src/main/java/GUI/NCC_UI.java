@@ -1,6 +1,7 @@
 package main.java.GUI;
 import main.java.BLL.NCCBLL;
 import main.java.DTO.NCCDTO;
+import main.java.DTO.SanPhamDTO;
 
 
 import javax.swing.*;
@@ -111,10 +112,25 @@ public class NCC_UI extends JPanel{
                         JOptionPane.showMessageDialog(NCC_Panel, "Vui lòng nhập lại thông tin");
 
                     else {
+                        DefaultTableModel model = new DefaultTableModel();
+                        model.addColumn("Mã NCC");
+                        model.addColumn("Tên NCC");
+                        model.addColumn("Số điện thoại");
+                        model.addColumn("Email");
+
+                        JTB_NCC.setModel(model);
                         String  MaNCC_old = JT_MaNCC.getText();
                         Vector<NCCDTO> ncc_arr = new Vector<NCCDTO>();
                         nccBLL.searchNCC(ncc_arr, MaNCC_old);
-                        JOptionPane.showMessageDialog(NCC_Panel, nccBLL.searchNCC(ncc_arr,MaNCC_old));
+                        for (int i = 0; i < ncc_arr.size(); i++){
+                            NCCDTO ncc = ncc_arr.get(i);
+                            String MaNCC = ncc.getMaNCC();
+                            String TenNCC = ncc.getTenNCC();
+                            String SDT = ncc.getSdtNCC();
+                            String Email = ncc.getEmailNCC();
+                            Object[] row = {MaNCC, TenNCC, SDT, Email};
+                            model.addRow(row);
+                        }
                     }
 
                 } catch (NumberFormatException ex){
