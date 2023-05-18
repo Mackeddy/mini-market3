@@ -52,16 +52,16 @@ public class SP_UI extends JPanel {
                     if(JT_MaSP.getText().trim().equals("") ||
                             JT_TenSP.getText().trim().equals("") ||
                             JT_GiaSP.getText().trim().equals("") ||
-                            JT_NCC.getText().trim().equals("") ||
-                            JT_SoLg.getText().trim().equals(""))
+                            JT_SoLg.getText().trim().equals("")||
+                            JT_NCC.getText().trim().equals(""))
                         JOptionPane.showMessageDialog(SP_Panel,"Vui lòng nhập lại thông tin");
                     else{
                         SanPhamDTO sp = new SanPhamDTO();
                         sp.setMaSP(JT_MaSP.getText());
                         sp.setTenSP(JT_TenSP.getText());
                         sp.setGia(Float.parseFloat(JT_GiaSP.getText()));
-                        sp.setNCC(JT_NCC.getText());
                         sp.setSoLg(Integer.parseInt(JT_SoLg.getText()));
+                        sp.setNCC(JT_NCC.getText());
                         JOptionPane.showMessageDialog(SP_Panel,spBLL.addSP(sp));
                         loadSP();
                     }
@@ -92,8 +92,8 @@ public class SP_UI extends JPanel {
                     if(JT_MaSP.getText().trim().equals("") ||
                             JT_TenSP.getText().trim().equals("") ||
                             JT_GiaSP.getText().trim().equals("") ||
-                            JT_NCC.getText().trim().equals("") ||
-                            JT_SoLg.getText().trim().equals(""))
+                            JT_SoLg.getText().trim().equals("") ||
+                            JT_NCC.getText().trim().equals("") )
                         JOptionPane.showMessageDialog(SP_Panel,"Vui lòng nhập lại thông tin");
                     else {
                         int selectRow = JTB_SP.getSelectedRow();
