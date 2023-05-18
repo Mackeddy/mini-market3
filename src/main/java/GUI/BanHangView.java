@@ -16,11 +16,9 @@ import java.util.Vector;
 public class BanHangView extends JPanel {
     private JPanel JPBanHang;
     private JTable TbSanPham;
-    private JTextField JTTimKiem;
     private JButton JBThem;
     private JLabel JLGioHang;
     private JPanel JPSanPham;
-    private JLabel JLNhap;
     private JPanel JPGioHang;
     private JPanel JPChucNang;
     private JTable JTGioHang;
@@ -36,7 +34,6 @@ public class BanHangView extends JPanel {
     private JTextField JTNhan;
     private JTextField JTTienThoi;
     private JButton JBTaoHD;
-    private JButton JBTimKiem;
     private JLabel JLMaHD;
     private JLabel JLMaKH;
     private JLabel JLMaNV;
@@ -186,13 +183,11 @@ JBThem.addActionListener(new ActionListener() {
         spBLL.addSPtoCart(MaSP);
         loadSP();
         //load sản phẩm lên giỏ hàng
-        System.out.println(MaSP + selectrow);
         String TenSP = JTSanPham.getValueAt(selectrow, 1).toString();
         float Gia = Float.parseFloat(JTSanPham.getValueAt(selectrow, 2).toString());
         //int SLTon = 0;
         String MaNCC = JTSanPham.getValueAt(selectrow, 4).toString();
         if (JTGioHang.getRowCount() == 0){
-            System.out.println("IF NGOÀI CÙNG");
             int SLTon = 1;
             Object[] row = {MaSP, TenSP, Gia, SLTon, MaNCC};
             modelGioHang.addRow(row);
@@ -201,7 +196,6 @@ JBThem.addActionListener(new ActionListener() {
             //duyệt trong bảng xem có mã sản phẩm mình cần không
             for (int i = 0; i <= JTGioHang.getRowCount(); i++) {
                 if(i == JTGioHang.getRowCount()){
-                    System.out.println("IF 2");
                     int SLTon2 = 1;
                     Object[] row = {MaSP, TenSP, Gia, SLTon2, MaNCC};
                     modelGioHang.addRow(row);
@@ -211,7 +205,6 @@ JBThem.addActionListener(new ActionListener() {
                     String value = JTGioHang.getValueAt(i, 0).toString();
                     if (value.equals(MaSP)) {
                         int SL = Integer.parseInt(JTGioHang.getValueAt(i, 3).toString());
-                        System.out.println("IF 3");
                         JTGioHang.getModel().setValueAt(SL + 1, i, 3);
                         break;
                     }
@@ -219,5 +212,6 @@ JBThem.addActionListener(new ActionListener() {
             }
         }
     }
+
 
 }

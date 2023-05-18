@@ -25,7 +25,6 @@ public class ThongKeView extends JPanel{
     private JScrollPane JSSanPham;
     private JPanel JPPhieuNhap;
     private JScrollPane JSPhieuNhap;
-    private JButton JBTKPN;
     private JLabel JLThu;
     private JLabel JLChi;
     ThongKeBLL tkeBLL = new ThongKeBLL();

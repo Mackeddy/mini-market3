@@ -9,7 +9,7 @@ public class AdminDAL {
     private Connection con;
 
     public boolean openConnection() {
-        try {
+        try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             String DBurl = "jdbc:sqlserver://localhost\\PD:1433;database=mini_market;encrypt=false;";
             String username = "sa";
@@ -96,6 +96,22 @@ public class AdminDAL {
         return result;
     }
 
+    public boolean hasMaTK2(String MaTK){
+        boolean result = false;
+        if(openConnection()){
+            try{
+                String sql = "Select * from TaiKhoan where MaTK = '" + MaTK + "'";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                result = rs.next();
+            }catch(SQLException ex){
+                System.out.println(ex);
+            }finally {
+                closeConnection();
+            }
+        }
+        return result;
+    }
     public boolean hasMaNVinTK(String MaNV){
         boolean result = false;
         if (openConnection()) {
@@ -136,19 +152,16 @@ public class AdminDAL {
 
     public boolean deleteTaiKhoan(String MaTK){
         boolean result = false;
-        if (openConnection()) {
-            try {
-                //dùng câu truy vấn để lấy bản ghi của cột MaTK trùng với MaTK truyền vào
-                String sql = "DELETE FROM TaiKhoan WHERE MaTK = '" + MaTK + "'";
+        if(openConnection()){
+            try{
+                String sql = "Delete from TaiKhoan where MaTK = '" + MaTK + "'";
                 Statement stmt = con.createStatement();
-                int rowCount = stmt.executeUpdate(sql);
-                //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
-                if (rowCount > 0)
+                int rowcount = stmt.executeUpdate(sql);
+                if(rowcount > 0)
                     result = true;
-            } catch (SQLException ex){
-                System.out.println("Lỗi ở hàm deleteTaiKhoan của class NhanVienDAL");
-                ex.printStackTrace();
-            } finally {
+            }catch(SQLException ex){
+                System.out.println(ex);
+            }finally {
                 closeConnection();
             }
         }
@@ -169,7 +182,6 @@ public class AdminDAL {
                 stmt.setString(3, tk.getMatKhau());
                 stmt.setString(4, MaTK_old);
                 int rowCount = stmt.executeUpdate();
-                System.out.print(rowCount);
                 //Nếu câu truy vấn trả veef ít nhất 1 bản ghi thì cập nhật result là true
                 if (rowCount > 0)
                     result = true;
@@ -182,4 +194,5 @@ public class AdminDAL {
         }
         return result;
     }
+
 }

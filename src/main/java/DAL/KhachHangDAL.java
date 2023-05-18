@@ -108,7 +108,7 @@ public class KhachHangDAL {
         if(openConnection()){
             try{
                 System.out.println( MaKH);
-                String sql = "UPDATE KhachHang SET MaKH = ?, TenKH = ?, SDT = ?, Email = ? Where MaKH = ?";
+                String sql = "UPDATE KhachHang SET MaKH = ?, TenKH = ?, SdtKH = ?, EmailKH = ? Where MaKH = ?";
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, kh.getMaKH());
                 stmt.setString(2, kh.getTenKH());
@@ -140,13 +140,14 @@ public class KhachHangDAL {
                     KhachHangDTO khachhang = new KhachHangDTO();
                     khachhang.setMaKH(rs.getString("MaKH"));
                     khachhang.setTenKH(rs.getString("TenKH"));
-                    khachhang.setSdtKH(rs.getString("SDT"));
-                    khachhang.setKHEmail(rs.getString("Email"));
+                    khachhang.setSdtKH(rs.getString("SdtKH"));
+                    khachhang.setKHEmail(rs.getString("EmailKH"));
                     arr.add(khachhang);
                 }
                 if(arr.size() > 0)
                     result = true;
             }catch(SQLException ex){
+                System.out.println(ex);
                 System.out.println("Hàm searchMaKH bị lỗi");
             }finally {
                 closeConnection();

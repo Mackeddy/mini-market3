@@ -188,7 +188,6 @@ public class SanPhamDAL {
         }
         return result;
     }
-
     public boolean deleteSPfromCart(String MaSP){
         boolean result = false;
         if(openConnection()){

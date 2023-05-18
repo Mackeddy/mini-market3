@@ -33,7 +33,6 @@ public class MainView extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Đã nhấn nút Trở về");
                 DangNhap dn = new DangNhap();
-                dn.setSize(900, 600); // Đặt kích thước của frame DangNhap dựa trên nội dung của các thành phần bên trong
                 dn.setLocationRelativeTo(null); // Đặt vị trí của frame DangNhap giữa màn hình
                 dn.setVisible(true);
                 setVisible(false);

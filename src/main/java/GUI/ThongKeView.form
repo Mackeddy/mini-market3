@@ -170,18 +170,10 @@
       </grid>
       <component id="4abce" class="javax.swing.JButton" binding="JBThongKe">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Thống Kê Sản Phẩm"/>
-        </properties>
-      </component>
-      <component id="1cf53" class="javax.swing.JButton" binding="JBTKPN">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Thống Kê Phiếu Nhập"/>
         </properties>
       </component>
     </children>
